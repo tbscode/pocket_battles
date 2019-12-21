@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/pieces.png" type="Texture" id=1]
+[ext_resource path="res://scripts/enemy_scripts/rook.gd" type="Script" id=2]
+
+[node name="entities" type="Node2D"]
+
+[node name="rook" type="Sprite" parent="."]
+position = Vector2( 57.5853, 94.2611 )
+texture = ExtResource( 1 )
+offset = Vector2( 16, -16 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+script = ExtResource( 2 )
