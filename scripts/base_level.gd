@@ -18,20 +18,22 @@ func init(width, height):
 
 func init_from_string(level_string, enemy_nodes):
     # Loads the level, from the level string created with print_json
-    var data = JSON.parse(level_string)
-    print((data as String))
+    var data = JSON.parse(level_string).get_result()
+    print(data)
     width = (data["width"] as int)
     height = (data["height"] as int)
     tiles = data["level"]
     var enemy_data = data["enemies"]
+    print("Enemies" + ( enemy_data as String) )
     print("Data now")
     enemies.resize(enemy_data.size())
     for i in range(enemy_data.size()):
         print(enemy_data[i])
-        var name = enemy_data["name"]
-        var x = enemy_data["x"]
-        var y = enemy_data["y"]
-        enemies[i] = get_enemy_node_byname(enemy_nodes, self.name)
+        var name = enemy_data[i]["name"]
+        var x = enemy_data[i]["x"]
+        var y = enemy_data[i]["y"]
+        print("Some of the data" + name )
+        enemies[i] = get_enemy_node_byname(enemy_nodes, name)
         enemies[i].init(x, y, self.name)
 
 func get_enemy_node_byname(enemy_nodes, name):
