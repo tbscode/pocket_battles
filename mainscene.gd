@@ -6,7 +6,7 @@ var level
 func _ready():
     print(game_controller.level_queue)
     # import the level builder
-    level = game_controller.level_queue.front()
+    level = game_controller.get_current_level()
     # level.add_enemies(game_controller.enemies) 
     get_tree().get_root().add_child(level) # Add the level to scene root to get object acess
     level.add_enemies_from_data()

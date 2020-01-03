@@ -11,5 +11,5 @@ func pressed():
     text = file.get_as_text()
     game_controller.level_queue.push_back(level)
     get_tree().change_scene("res://mainscene.tscn")
-    # When scene loads before transition enemie nodes are not preloaded`
+    # When scene loads before transition enemie nodes are not preloaded
     level.init_from_string(text)

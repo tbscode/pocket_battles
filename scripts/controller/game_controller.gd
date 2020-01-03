@@ -7,3 +7,6 @@ var enemies = preload("res://scenes/enemies.tscn").instance()
 
 func _ready():
 	print("initialized game controller")
+
+func get_current_level():
+    return level_queue.front()
