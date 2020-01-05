@@ -4,13 +4,15 @@ var level
 
 # This is the level init script
 func _ready():
-    print(game_controller.level_queue)
-    # import the level builder
     level = game_controller.get_current_level()
-    # level.add_enemies(game_controller.enemies) 
-    get_tree().get_root().add_child(level) # Add the level to scene root to get object acess
+    var game_scene = get_tree().get_current_scene()
+    print(game_scene.get_path())
+    game_scene.add_child(level) # Add the level to scene root to get object acess
     level.add_enemies_from_data()
-    level.build_level(get_tree()) # Initializes all preloaded scene object
+    level.add_player_entities_from_data()
+    level.build_level(game_scene) # Initializes all preloaded scene object
+    # Place the Player Entities as Options in the Player Menu
     print("Enemies: " + (level.enemies as String))
+    print("Player Entities: " + (level.player_entities as String))
     level.print_json()
 

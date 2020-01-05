@@ -1,1 +1,1 @@
-extends "res://scripts/queen.gd"
+extends "res://scripts/base_enemy.gd"

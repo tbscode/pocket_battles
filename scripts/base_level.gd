@@ -9,6 +9,8 @@ var player_entities = [] # Holds the Players Tiles.
 var enemy_data # Hold all the enemies after init, before thy are added to the scene
 var player_entitie_data
 
+var globals = preload("res://globals.gd")
+
 func init(width, height):
     tiles.resize(width)
     for i in range(tiles.size()):
@@ -16,8 +18,6 @@ func init(width, height):
         tiles[i].resize(height)
         for j in range(tiles[i].size()):
             tiles[i][j] = 0
-    var base_enemy = load("res://scripts/base_enemy.gd")
-    # Todo remove, just for testing
 
 func init_from_string(level_string):
     # Loads the level, from the level string created with print_json
@@ -43,9 +43,24 @@ func add_enemies_from_data():
         enemies[i] = get_enemy_node_byname(game_controller.enemies, name)
         enemies[i].init(x, y, self.name, enemy_move_queue)
 
+func add_player_entities_from_data():
+    player_entities.resize(player_entitie_data.size())
+    for i in range(player_entities.size()):
+        print(player_entitie_data[i])
+        var name = player_entitie_data[i]["name"]
+        player_entities[i] = get_player_node_byname(game_controller.player_entities, name)
+        player_entities[i].init(name)
+
 func get_enemy_node_byname(enemy_nodes, name):
     # load the enmy sceen add it to the tree
     var node = enemy_nodes.find_node(name).duplicate()
+    print(node)
+    return node
+
+func get_player_node_byname(player_nodes, name):
+    print(player_nodes)
+    # Expects the game controllers collection of all available player entities
+    var node = player_nodes.find_node(name).duplicate()
     print(node)
     return node
 
@@ -54,15 +69,30 @@ func add_enemies(enemie_nodes):
     rook.init(2, 1, "rook")
     enemies.push_back(rook)
 
-func build_level(tree):
+func build_level(scene):
     # We here assume the level was added to the scene tree
     # TODO add the tiles
     # TODO` put elsewhere
+    add_level_nodes_to_scene(scene)
+    
+
+func add_level_nodes_to_scene(scene):
+    var enemy_container = scene.find_node("enemy_container")
     for e in enemies:
-        print(e)
-        tree.get_root().add_child(e)
+        enemy_container.add_child(e)
         e.position_on_map()
-        print("added enemy")
+
+    var x_pos = 0
+    var y_pos = 0
+    print("root" + get_tree().get_current_scene().find_node("menu_container").get_path())
+    var player_entitie_container = scene.find_node("menu_container")
+    
+    for entitie in player_entities:
+        player_entitie_container.add_child(entitie)
+        entitie.position.x = x_pos
+        entitie.position.y = y_pos
+        x_pos += globals.block_width
+        # TODO: add line break logic
 
 func print_json():
     # Then parse all the enemies to a list:

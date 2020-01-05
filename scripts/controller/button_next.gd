@@ -1,4 +1,4 @@
 extends Button
 
 func pressed():
-    game_controller.get_current_level().performe_move()
+    game_controller.performe_move_on_current_level()

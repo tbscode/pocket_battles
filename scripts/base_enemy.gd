@@ -26,7 +26,6 @@ func _ready():
 func position_on_map():
     # Sets the enemies position on the map
     var grid = get_tree().get_nodes_in_group("grid")[0] # Load the worlds grid
-    print("repositioning to " + (x as String) + (y as String))
     position.x = grid.position.x + x * globals.block_width
     position.y = grid.position.y + (y + 1) * globals.block_width
 
