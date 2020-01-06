@@ -105,7 +105,7 @@ func add_level_nodes_to_scene(scene):
     for i in range(turn_amount):
         var new_button = move_button.duplicate()
         new_button.rect_position.x = x_pos
-        get_tree().get_current_scene().get_node("player_move_menu/menu_container").add_child(new_button)
+        get_tree().get_current_scene().get_node("player_move_menu/menu_container/margin/scroll/hbox").add_child(new_button)
         x_pos += move_button.rect_size.x
         print((i as String))
 

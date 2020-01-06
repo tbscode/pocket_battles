@@ -97,21 +97,28 @@ script = ExtResource( 8 )
 [node name="menu_container" type="Node2D" parent="player_move_menu"]
 position = Vector2( 420, 250 )
 
-[node name="MarginContainer" type="MarginContainer" parent="player_move_menu/menu_container"]
+[node name="margin" type="MarginContainer" parent="player_move_menu/menu_container"]
+margin_top = -6.0
 margin_right = 402.0
 margin_bottom = 70.0
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="background" type="NinePatchRect" parent="player_move_menu/menu_container/MarginContainer"]
+[node name="background" type="NinePatchRect" parent="player_move_menu/menu_container/margin"]
 margin_right = 402.0
-margin_bottom = 70.0
+margin_bottom = 76.0
 texture = ExtResource( 5 )
 patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 5
+
+[node name="scroll" type="ScrollContainer" parent="player_move_menu/menu_container/margin"]
+margin_right = 402.0
+margin_bottom = 76.0
+
+[node name="hbox" type="HBoxContainer" parent="player_move_menu/menu_container/margin/scroll"]
 
 [node name="hide_button" type="Button" parent="player_move_menu/menu_container"]
 margin_left = 34.4107

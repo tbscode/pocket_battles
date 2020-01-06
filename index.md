@@ -6,7 +6,13 @@ Godot game I'm building within the \#FFSjam on itch.io.
 
 It will be a tunbased puzzle stategy game.
 
-### 07/01 More ui stuff
+### 07/01 More ui stuff and move selection
+
+Implemented move selection
+
+<img src="blog/pocket_battles4.gif" width="49%">
+
+Select and place player nodes.
 
 <img src="blog/pocket_battles3.gif" width="49%">
 
