@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/pieces.png" type="Texture" id=1]
 [ext_resource path="res://scripts/player_entitie_scripts/knight.gd" type="Script" id=2]
+[ext_resource path="res://scripts/controller/player_entitie_click_handler.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
 
 [node name="Node2D" type="Node2D"]
 
@@ -12,3 +23,15 @@ offset = Vector2( 16, 16 )
 region_enabled = true
 region_rect = Rect2( 64, 0, 32, 32 )
 script = ExtResource( 2 )
+
+[node name="click_handler" type="Button" parent="knight"]
+margin_left = -1.0
+margin_top = 2.0
+margin_right = 34.0
+margin_bottom = 37.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+script = ExtResource( 3 )

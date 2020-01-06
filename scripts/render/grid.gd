@@ -39,3 +39,10 @@ func _draw():
 	for i in range(width + 1):
 		draw_line(Vector2( x + i * globals.block_width, y), \
 		Vector2( x + i * globals.block_width, y + height * globals.block_width), Color.red)
+
+func get_actual_width():
+    return width * globals.block_width
+
+func get_actual_height():
+    return height * globals.block_height
+
