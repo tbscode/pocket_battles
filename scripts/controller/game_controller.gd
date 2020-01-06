@@ -34,6 +34,7 @@ func field_selected(field):
     # called by the grid, when field on the grid was selected
     selected_field = field
     print(field as String)
+    wait_for_selection = false
     emit_signal("field_selected")
 
 func hide_player_menu():
@@ -42,3 +43,10 @@ func hide_player_menu():
 func expand_player_menu():
     get_tree().get_current_scene().get_node("player_menu/menu_container").position.y = 0
 
+func show_move_menu():
+    # Will simply move the move emnu in view
+    get_tree().get_current_scene().get_node("player_move_menu/menu_container").position.x = 0
+
+func hide_move_menu():
+    # Will simply move the move emnu in view
+    get_tree().get_current_scene().get_node("player_move_menu/menu_container").position.x = 420

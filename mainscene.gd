@@ -27,11 +27,16 @@ func _input(event):
             # and it was the click down
             # Get the grid position
             # Check if the click is contained in the grid:
-            if event.position.x > grid.position.x && event.position.x < (grid.position.x + grid.get_actual_width()):
+            if is_click_event_in_grid(event):
                 if game_controller.wait_for_selection:
                     var x_pos = ((event.position.x - grid.position.x) / globals.block_width) as int
                     var y_pos = ((event.position.y - grid.position.y) / globals.block_width) as int
                     var field_vec = [x_pos, y_pos]
                     game_controller.field_selected(field_vec)
                     print("selected field" + (field_vec as String))
+
+func is_click_event_in_grid(event):
+    var x_contained = event.position.x > grid.position.x && event.position.x < (grid.position.x + grid.get_actual_width())
+    var y_contained = event.position.y > grid.position.y && event.position.y < (grid.position.y + grid.get_actual_height())
+    return ( x_contained && y_contained)
 

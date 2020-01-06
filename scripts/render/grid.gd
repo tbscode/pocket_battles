@@ -44,5 +44,5 @@ func get_actual_width():
     return width * globals.block_width
 
 func get_actual_height():
-    return height * globals.block_height
+    return height * globals.block_width
 

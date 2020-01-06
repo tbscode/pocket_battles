@@ -12,3 +12,7 @@ func pressed():
         print((field as String))
         get_parent().place_on_field(field)
         game_controller.expand_player_menu()
+    else:
+        # Reopen the move menu if not jet in battle mode
+        print("Pressed but already placed")
+        game_controller.show_move_menu()
