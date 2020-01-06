@@ -23,7 +23,7 @@ func _ready():
 func _input(event):
     if event is InputEventMouseButton:
         # mouse button event
-        if event.pressed:
+        if not event.pressed:
             # and it was the click down
             # Get the grid position
             # Check if the click is contained in the grid:

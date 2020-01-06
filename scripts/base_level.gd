@@ -11,6 +11,8 @@ var player_entitie_data
 
 var globals = preload("res://globals.gd")
 
+var turn_amount # every level has a locked amount of turns
+
 func init(width, height):
     tiles.resize(width)
     for i in range(tiles.size()):
@@ -25,6 +27,7 @@ func init_from_string(level_string):
     print(data)
     width = (data["width"] as int)
     height = (data["height"] as int)
+    turn_amount = (data["turn_amount"] as int)
     tiles = data["level"]
     enemy_data = data["enemies"]
     player_entitie_data = data["player_entities"]
@@ -94,6 +97,19 @@ func add_level_nodes_to_scene(scene):
         x_pos += globals.block_width
         # TODO: add line break logic
 
+    # Add the Move buttons to the player_move_menu
+    # Fist load the external Button
+    var move_button = game_controller.get_reusable_ui_elements().get_node("direction_button")
+    print("got the button" + (move_button.rect_size.x as String))
+    x_pos = 0
+    for i in range(turn_amount):
+        var new_button = move_button.duplicate()
+        new_button.rect_position.x = x_pos
+        get_tree().get_current_scene().get_node("player_move_menu/menu_container").add_child(new_button)
+        x_pos += move_button.rect_size.x
+        print((i as String))
+
+
 func print_json():
     # Then parse all the enemies to a list:
     var enemie_datas = []
@@ -107,7 +123,7 @@ func print_json():
         player_entitie_datas[i] = parse_player_entitie_todict(player_entities[i])
     
     # Prints the level as json string
-    var level_data = { "level" : tiles, "width": width, "height": height, \
+    var level_data = { "level" : tiles, "width": width, "height": height, "turn_amount": turn_amount, \
             "enemies": enemie_datas, "player_entities": player_entitie_datas}
     var level_data_json = JSON.print(level_data)
     print(level_data_json)

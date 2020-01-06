@@ -95,12 +95,11 @@ script = ExtResource( 8 )
 [node name="player_move_menu" type="Node" parent="."]
 
 [node name="menu_container" type="Node2D" parent="player_move_menu"]
-position = Vector2( 420, 0 )
+position = Vector2( 420, 250 )
 
 [node name="MarginContainer" type="MarginContainer" parent="player_move_menu/menu_container"]
-margin_top = 234.0
 margin_right = 402.0
-margin_bottom = 304.0
+margin_bottom = 70.0
 __meta__ = {
 "_edit_group_": true
 }
@@ -115,10 +114,10 @@ patch_margin_right = 3
 patch_margin_bottom = 5
 
 [node name="hide_button" type="Button" parent="player_move_menu/menu_container"]
-margin_left = 41.443
-margin_top = 312.983
-margin_right = 370.442
-margin_bottom = 343.983
+margin_left = 34.4107
+margin_top = 75.6413
+margin_right = 363.41
+margin_bottom = 106.641
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )

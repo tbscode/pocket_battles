@@ -11,6 +11,10 @@ func pressed():
         var field = game_controller.selected_field
         print((field as String))
         get_parent().place_on_field(field)
+        # The ask the player to set the desired move chain
+        game_controller.show_move_menu()
+        yield(game_controller, "moves_selected")
+        # Now wait for the player to hide the move menu, implieing that he is done
         game_controller.expand_player_menu()
     else:
         # Reopen the move menu if not jet in battle mode
