@@ -13,6 +13,10 @@ Implemented using independent objects for flexability.
 
 ![pic1](blog/pocket_battles_1.gif)
 
+And base ui for player entity placement.
+
+![pic1](blog/pocket_battles2.gif)
+
 ### TODO
 
 - [ ] build levels

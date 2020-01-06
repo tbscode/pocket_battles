@@ -36,3 +36,9 @@ func field_selected(field):
     print(field as String)
     emit_signal("field_selected")
 
+func hide_player_menu():
+    get_tree().get_current_scene().get_node("player_menu/menu_container").position.y = -200
+
+func expand_player_menu():
+    get_tree().get_current_scene().get_node("player_menu/menu_container").position.y = 0
+

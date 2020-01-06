@@ -1,4 +1,4 @@
 extends Button
 
 func pressed():
-    get_parent().position.y = -200
+    game_controller.hide_player_menu()

@@ -33,6 +33,8 @@ script = ExtResource( 1 )
 ]]
 position = Vector2( 91, 157 )
 script = ExtResource( 2 )
+x = 0
+y = 0
 
 [node name="Button" type="Button" parent="."]
 margin_left = 39.421
@@ -74,7 +76,7 @@ patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 5
 
-[node name="expand_button" type="Button" parent="player_menu/menu_container"]
+[node name="hide_button" type="Button" parent="player_menu/menu_container"]
 margin_left = 35.9853
 margin_top = 158.271
 margin_right = 364.985
@@ -86,3 +88,5 @@ text = "Hide"
 script = ExtResource( 8 )
 
 [node name="enemy_container" type="Node" parent="."]
+
+[node name="player_entiti_collection" type="Node" parent="."]
