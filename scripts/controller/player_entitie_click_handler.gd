@@ -15,6 +15,7 @@ func pressed():
         game_controller.show_move_menu()
         yield(game_controller, "moves_selected")
         # Now wait for the player to hide the move menu, implieing that he is done
+        game_controller.get_current_level().reposition_player_entities_in_menu()
         game_controller.expand_player_menu()
     else:
         # Reopen the move menu if not jet in battle mode

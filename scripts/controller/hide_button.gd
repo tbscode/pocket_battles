@@ -14,7 +14,6 @@ func pressed():
     state += 1
     if state > 4:
         state = 0
-
     match state:
         0:
             change_image_region(nothing_region)

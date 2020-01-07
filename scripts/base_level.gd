@@ -109,6 +109,15 @@ func add_level_nodes_to_scene(scene):
         x_pos += move_button.rect_size.x
         print((i as String))
 
+func reposition_player_entities_in_menu():
+    var x_pos = 0
+    var move_button = game_controller.get_reusable_ui_elements().get_node("direction_button")
+    for entitie in player_entities:
+        if not entitie.placed:
+            entitie.position.x = x_pos
+            x_pos += move_button.rect_size.x
+
+
 
 func print_json():
     # Then parse all the enemies to a list:
