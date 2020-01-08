@@ -9,6 +9,8 @@ var globals = preload("res://globals.gd")
 
 var reusable_ui_elements = preload("res://scenes/reusable_ui_elements.tscn").instance()
 
+var selected_player_entity
+
 signal field_selected
 signal moves_selected
 
@@ -67,3 +69,15 @@ func show_move_menu():
 func hide_move_menu():
     # Will simply move the move emnu in view
     get_tree().get_current_scene().get_node("player_move_menu/menu_container").position.x = 420
+
+func register_as_selected_player_entity(entity):
+    # for the entity to call when clicked
+    selected_player_entity = entity
+
+func get_selected_player_entity():
+    # get the currently selected player entity
+    return selected_player_entity
+
+func state_of_selected_entity_changed(state_id, state):
+    # When one of the direction buttons was pressed
+    get_selected_player_entity().change_move_queue(state_id, state)

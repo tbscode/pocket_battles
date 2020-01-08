@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/ui/red.png" type="Texture" id=5]
 [ext_resource path="res://scripts/controller/button_next.gd" type="Script" id=6]
 [ext_resource path="res://scripts/expand_button.gd" type="Script" id=7]
-[ext_resource path="res://scripts/controller/hide_button.gd" type="Script" id=8]
+[ext_resource path="res://scripts/controller/hide_player_menu.gd" type="Script" id=8]
 [ext_resource path="res://scripts/controller/hide_button_move_menu.gd" type="Script" id=9]
 
 [sub_resource type="StyleBoxTexture" id=1]
@@ -32,23 +32,26 @@ script = ExtResource( 1 )
 [node name="grid" type="Node2D" parent="." groups=[
 "grid",
 ]]
-position = Vector2( 91, 157 )
+position = Vector2( 9.60373, 105.75 )
 script = ExtResource( 2 )
-x = 0
-y = 0
 
 [node name="Button" type="Button" parent="."]
-margin_left = 39.421
-margin_top = 503.211
-margin_right = 362.421
-margin_bottom = 567.211
+margin_left = 42.0
+margin_top = 551.0
+margin_right = 365.0
+margin_bottom = 597.0
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )
 text = "Move"
 script = ExtResource( 6 )
 
+[node name="enemy_container" type="Node" parent="."]
+
+[node name="player_entiti_collection" type="Node" parent="."]
+
 [node name="player_menu" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="expand_button" type="Button" parent="player_menu"]
 margin_left = 34.478
@@ -88,26 +91,23 @@ custom_styles/normal = SubResource( 2 )
 text = "Hide"
 script = ExtResource( 8 )
 
-[node name="enemy_container" type="Node" parent="."]
-
-[node name="player_entiti_collection" type="Node" parent="."]
-
 [node name="player_move_menu" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="menu_container" type="Node2D" parent="player_move_menu"]
-position = Vector2( 420, 250 )
+position = Vector2( 420, 435.403 )
 
 [node name="margin" type="MarginContainer" parent="player_move_menu/menu_container"]
-margin_top = -6.0
-margin_right = 402.0
-margin_bottom = 70.0
+margin_top = 3.0
+margin_right = 393.0
+margin_bottom = 76.0
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="background" type="NinePatchRect" parent="player_move_menu/menu_container/margin"]
-margin_right = 402.0
-margin_bottom = 76.0
+margin_right = 393.0
+margin_bottom = 73.0
 texture = ExtResource( 5 )
 patch_margin_left = 3
 patch_margin_top = 3
@@ -115,16 +115,16 @@ patch_margin_right = 3
 patch_margin_bottom = 5
 
 [node name="scroll" type="ScrollContainer" parent="player_move_menu/menu_container/margin"]
-margin_right = 402.0
-margin_bottom = 76.0
+margin_right = 393.0
+margin_bottom = 73.0
 
 [node name="hbox" type="HBoxContainer" parent="player_move_menu/menu_container/margin/scroll"]
 
 [node name="hide_button" type="Button" parent="player_move_menu/menu_container"]
-margin_left = 34.4107
-margin_top = 75.6413
-margin_right = 363.41
-margin_bottom = 106.641
+margin_left = 38.9326
+margin_top = 81.6706
+margin_right = 367.932
+margin_bottom = 112.671
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )

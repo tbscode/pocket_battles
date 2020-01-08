@@ -8,6 +8,8 @@ var left_region = [32, 32]
 var nothing_region = [128, 64]
 
 var state = 0
+var move_num = 0
+
 
 func pressed():
     # Loop Trough all direction States of a given entitie 
@@ -25,6 +27,9 @@ func pressed():
             change_image_region(down_region)
         4:
             change_image_region(left_region)
+
+    # Now Notify the game controller, that a state hast changed
+    game_controller.state_of_selected_entity_changed(move_num, state)
 
 func change_image_region(region):
     self.get_node("direction_texture_sprite").region_rect.position.x = region[0] as float

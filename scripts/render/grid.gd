@@ -17,7 +17,6 @@ func _ready():
 	# For desktop we have to get the screen coodrinates from the settings
 	viewportsize = Vector2(ProjectSettings.get_setting("display/window/size/width"), \
 							ProjectSettings.get_setting("display/window/size/height"))
-	center()
 	print(viewportsize)
 	print("correct indent")
 

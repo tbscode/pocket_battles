@@ -107,6 +107,7 @@ func add_level_nodes_to_scene(scene):
         new_button.rect_position.x = x_pos
         get_tree().get_current_scene().get_node("player_move_menu/menu_container/margin/scroll/hbox").add_child(new_button)
         x_pos += move_button.rect_size.x
+        new_button.move_num = i
         print((i as String))
 
 func reposition_player_entities_in_menu():
@@ -149,3 +150,7 @@ func parse_player_entitie_todict(entitie):
 func performe_move():
     for enemie in enemies:
         enemie.performe_move()
+
+    for player_entity in player_entities:
+        if player_entity.placed:
+            player_entity.performe_move()
