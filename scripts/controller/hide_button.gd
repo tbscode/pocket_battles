@@ -16,6 +16,16 @@ func pressed():
     state += 1
     if state > 4:
         state = 0
+    change_state_region()
+    # Now Notify the game controller, that a state hast changed
+    game_controller.state_of_selected_entity_changed(move_num, state)
+    
+func reset_state():
+    # Simply resets to the default state
+    state = 0
+    change_state_region()
+
+func change_state_region():
     match state:
         0:
             change_image_region(nothing_region)
@@ -28,8 +38,6 @@ func pressed():
         4:
             change_image_region(left_region)
 
-    # Now Notify the game controller, that a state hast changed
-    game_controller.state_of_selected_entity_changed(move_num, state)
 
 func change_image_region(region):
     self.get_node("direction_texture_sprite").region_rect.position.x = region[0] as float

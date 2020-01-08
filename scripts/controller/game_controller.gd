@@ -70,6 +70,9 @@ func hide_move_menu():
     # Will simply move the move emnu in view
     get_tree().get_current_scene().get_node("player_move_menu/menu_container").position.x = 420
 
+func get_move_button_container():
+    return get_tree().get_current_scene().get_node("player_move_menu/menu_container/margin/scroll/hbox")
+
 func register_as_selected_player_entity(entity):
     # for the entity to call when clicked
     selected_player_entity = entity

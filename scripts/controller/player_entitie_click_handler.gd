@@ -7,6 +7,11 @@ func pressed():
     if not get_parent().placed:
         # Fist clicking the Player node to use
         game_controller.register_as_selected_player_entity(get_parent())
+        # Set the states of all direction buttons to the entities move queue
+        var move_buttons = game_controller.get_move_button_container().get_children()
+        for i in range(get_parent().move_queue.size()):
+            move_buttons[i].state = get_parent().move_queue[i]
+            move_buttons[i].change_state_region()
         game_controller.hide_player_menu()
         game_controller.wait_for_field_selection()
         yield(game_controller, "field_selected")
