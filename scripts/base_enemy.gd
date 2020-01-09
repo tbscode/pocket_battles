@@ -37,12 +37,15 @@ func performe_move():
     if move_pointer >= move_queue.size():
         return
     match move:
-        0:# Down
+        0:
+            pass
+        1:# Nothing
             y += 1
-        1:# Left
+        2:# Left
             x -= 1
-        2:# Up
+        3:# Up
             y -= 1
-        3:# Right
+        4:# Right
             x += 1
     position_on_map()
+

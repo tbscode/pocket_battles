@@ -1,15 +1,14 @@
 extends Button
 
 # The Coordinates of the aread for given directions
-var up_region = [96, 64]
-var right_region = [32, 64]
-var down_region = [64, 64]
-var left_region = [32, 32]
-var nothing_region = [128, 64]
 
 var state = 0
 var move_num = 0
 
+var g
+
+func _ready():
+    g = game_controller.get_globals()
 
 func pressed():
     # Loop Trough all direction States of a given entitie 
@@ -28,15 +27,16 @@ func reset_state():
 func change_state_region():
     match state:
         0:
-            change_image_region(nothing_region)
+            change_image_region(g.nothing_region)
         1:
-            change_image_region(up_region)
+            change_image_region(g.up_region)
         2:
-            change_image_region(right_region)
+            change_image_region(g.right_region)
         3:
-            change_image_region(down_region)
+            change_image_region(g.down_region)
         4:
-            change_image_region(left_region)
+            change_image_region(g.left_region)
+
 
 
 func change_image_region(region):

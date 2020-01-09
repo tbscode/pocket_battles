@@ -110,6 +110,27 @@ func add_level_nodes_to_scene(scene):
         new_button.move_num = i
         print((i as String))
 
+    add_enemy_moves_to_listing()
+
+func add_enemy_moves_to_listing():
+    # Adds all the enemy move desriptions to the listing
+    var enemy_move_display = get_tree().get_current_scene().get_node("enemy_move_display/margin/scroll/vbox")
+    var row_count = 0
+    for enemy in enemies:
+        var move_container = game_controller.get_reusable_ui_elements().get_node("enemy_move_container").duplicate()
+        move_container.position.y = row_count * move_container.get_node("margin").rect_size.y
+        var line_count = 0
+        for move in enemy.move_queue:
+            var move_disp = game_controller.get_reusable_ui_elements().get_node("enemy_direction_sprite").duplicate()
+            move_container.get_node("margin/scroll/hbox").add_child(move_disp)
+            move_disp.g = game_controller.get_globals()
+            move_disp.position.x = line_count * globals.block_width
+            move_disp.set_state(move)
+            move_disp.change_state_region()
+            line_count += 1
+        enemy_move_display.add_child(move_container)
+        row_count += 1
+
 func reposition_player_entities_in_menu():
     var x_pos = 0
     var move_button = game_controller.get_reusable_ui_elements().get_node("direction_button")
