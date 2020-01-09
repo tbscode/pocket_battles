@@ -1,8 +1,8 @@
 extends Node
 
 var tiles = [0] 
-var width = 0
-var height = 0
+var width : int
+var height : int
 
 var enemies = [] # List of enemies
 var player_entities = [] # Holds the Players Tiles.
@@ -25,9 +25,9 @@ func init_from_string(level_string):
     # Loads the level, from the level string created with print_json
     var data = JSON.parse(level_string).get_result()
     print(data)
-    width = (data["width"] as int)
-    height = (data["height"] as int)
-    turn_amount = (data["turn_amount"] as int)
+    self.width = (data["width"] as int)
+    self.height = (data["height"] as int)
+    self.turn_amount = (data["turn_amount"] as int)
     tiles = data["level"]
     enemy_data = data["enemies"]
     player_entitie_data = data["player_entities"]

@@ -39,13 +39,17 @@ func performe_move():
     match move:
         0:
             pass
-        1:# Nothing
-            y += 1
-        2:# Left
-            x -= 1
-        3:# Up
-            y -= 1
+        1:# up
+            if y > 0:
+                y -= 1
+        2:# right
+            if x < game_controller.get_current_level().width: 
+                x += 1
+        3:# Down
+            if y < game_controller.get_current_level().height:
+                y += 1
         4:# Right
-            x += 1
+            if x > 0:
+                x -= 1
     position_on_map()
 
