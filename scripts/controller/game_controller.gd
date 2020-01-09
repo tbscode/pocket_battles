@@ -8,11 +8,15 @@ var player_entities = preload("res://scenes/player_entities.tscn").instance()
 var globals = preload("res://globals.gd")
 
 var reusable_ui_elements = preload("res://scenes/reusable_ui_elements.tscn").instance()
+var tiles = preload("res://scenes/tiles.tscn").instance()
 
 var selected_player_entity
 
 signal field_selected
 signal moves_selected
+
+var selected_enemy_move_background = load("res://assets/ui/red_pressed.png")
+var un_selected_enemy_move_background = load("res://assets/ui/red.png")
 
 var selected_field = [0, 0]
 
@@ -43,6 +47,12 @@ func field_selected(field):
     print(field as String)
     wait_for_selection = false
     emit_signal("field_selected")
+
+func get_tile_by_id(id):
+    # Returns a map tile by its id
+    for tile in tiles.get_children():
+        if tile.get_node("type").ID == id:
+            return tile.duplicate()
 
 var wait_for_move_selection = false
 func trigger_wait_for_move_selection():
@@ -81,6 +91,12 @@ func get_selected_player_entity():
     # get the currently selected player entity
     return selected_player_entity
 
+func highlight_enemy_move(enemy_num):
+    get_current_level().highlight_enemy_move(enemy_num)
+
 func state_of_selected_entity_changed(state_id, state):
     # When one of the direction buttons was pressed
     get_selected_player_entity().change_move_queue(state_id, state)
+
+func select_position(vec):
+    get_tree().get_current_scene().get_node("selector").position = vec

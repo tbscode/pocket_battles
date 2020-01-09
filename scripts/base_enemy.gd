@@ -9,6 +9,8 @@ var y : int = 2
 
 var entity_name
 
+var enemy_num : int
+
 # the moves are emuleted by an array of numbers and a pointer
 var move_pointer = 0
 var move_queue
@@ -27,7 +29,7 @@ func position_on_map():
     # Sets the enemies position on the map
     var grid = get_tree().get_nodes_in_group("grid")[0] # Load the worlds grid
     position.x = grid.position.x + x * globals.block_width
-    position.y = grid.position.y + (y + 1) * globals.block_width
+    position.y = grid.position.y + y * globals.block_width
 
 func performe_move():
     # Does one move of the move stack

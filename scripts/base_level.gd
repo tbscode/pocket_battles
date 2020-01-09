@@ -7,6 +7,7 @@ var height : int
 var enemies = [] # List of enemies
 var player_entities = [] # Holds the Players Tiles.
 var enemy_data # Hold all the enemies after init, before thy are added to the scene
+var enemy_move_containers = []
 var player_entitie_data
 
 var globals = preload("res://globals.gd")
@@ -29,6 +30,7 @@ func init_from_string(level_string):
     self.height = (data["height"] as int)
     self.turn_amount = (data["turn_amount"] as int)
     tiles = data["level"]
+    # init(width, height)
     enemy_data = data["enemies"]
     player_entitie_data = data["player_entities"]
     print("Enemies" + ( enemy_data as String) )
@@ -45,6 +47,17 @@ func add_enemies_from_data():
         print("The moves " + ( enemy_move_queue as String))
         enemies[i] = get_enemy_node_byname(game_controller.enemies, name)
         enemies[i].init(x, y, self.name, enemy_move_queue)
+        enemies[i].enemy_num = i
+
+func add_level_tiles_from_data():
+    # Loads all the levels tiles and adds them to the map
+    for x in range(width):
+        for y in range(height):
+            var tile = game_controller.get_tile_by_id(tiles[x][y])
+            if tile != null:
+                get_tree().get_current_scene().get_node("grid").add_child(tile)
+                tile.position.x = x * globals.block_width
+                tile.position.y = y * globals.block_width
 
 func add_player_entities_from_data():
     player_entities.resize(player_entitie_data.size())
@@ -119,6 +132,8 @@ func add_enemy_moves_to_listing():
     for enemy in enemies:
         var move_container = game_controller.get_reusable_ui_elements().get_node("enemy_move_container").duplicate()
         move_container.position.y = row_count * move_container.get_node("margin").rect_size.y
+        move_container.enemy_num = row_count
+        enemy_move_containers.push_front(move_container)
         var line_count = 0
         for move in enemy.move_queue:
             var move_disp = game_controller.get_reusable_ui_elements().get_node("enemy_direction_sprite").duplicate()
@@ -130,6 +145,13 @@ func add_enemy_moves_to_listing():
             line_count += 1
         enemy_move_display.add_child(move_container)
         row_count += 1
+
+func highlight_enemy_move(enemy_num):
+    for container in enemy_move_containers:
+        if container.enemy_num == enemy_num:
+            container.select()
+        else:
+            container.deselect()
 
 func reposition_player_entities_in_menu():
     var x_pos = 0

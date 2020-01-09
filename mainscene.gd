@@ -12,6 +12,7 @@ func _ready():
     game_scene.add_child(level) # Add the level to scene root to get object acess
     level.add_enemies_from_data()
     level.add_player_entities_from_data()
+    level.add_level_tiles_from_data()
     level.build_level(game_scene) # Initializes all preloaded scene object
     # Load the grid cords forinput processig
     grid = self.get_node("grid")

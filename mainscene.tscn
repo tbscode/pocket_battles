@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://mainscene.gd" type="Script" id=1]
 [ext_resource path="res://scripts/render/grid.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scripts/expand_button.gd" type="Script" id=7]
 [ext_resource path="res://scripts/controller/hide_player_menu.gd" type="Script" id=8]
 [ext_resource path="res://scripts/controller/hide_button_move_menu.gd" type="Script" id=9]
+[ext_resource path="res://assets/selection.png" type="Texture" id=10]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
@@ -152,3 +153,7 @@ custom_styles/pressed = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )
 text = "Hide"
 script = ExtResource( 9 )
+
+[node name="selector" type="Sprite" parent="."]
+texture = ExtResource( 10 )
+offset = Vector2( 16, 16 )
