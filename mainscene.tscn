@@ -155,5 +155,6 @@ text = "Hide"
 script = ExtResource( 9 )
 
 [node name="selector" type="Sprite" parent="."]
+position = Vector2( -32, 0 )
 texture = ExtResource( 10 )
 offset = Vector2( 16, 16 )

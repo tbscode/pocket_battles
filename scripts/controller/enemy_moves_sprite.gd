@@ -4,7 +4,6 @@ var g
 var state : int = 0
 
 func change_state_region():
-    print("Changing with state" + (state as String))
     match state:
         0:
             change_image_region(g.nothing_region)
@@ -16,13 +15,11 @@ func change_state_region():
             change_image_region(g.down_region)
         4:
             change_image_region(g.left_region)
-    print("Done Matching")
 
 
 func change_image_region(region):
     region_rect.position.x = region[0] as float
     region_rect.position.y = region[1] as float
-    print("changed move region")
 
 func set_state(new_state):
     state = new_state

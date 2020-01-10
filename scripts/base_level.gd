@@ -1,6 +1,7 @@
 extends Node
 
 var tiles = [0] 
+var tile_nodes = []
 var width : int
 var height : int
 
@@ -51,13 +52,18 @@ func add_enemies_from_data():
 
 func add_level_tiles_from_data():
     # Loads all the levels tiles and adds them to the map
+    tile_nodes = []
+    tile_nodes.resize(width)
     for x in range(width):
+        tile_nodes[x] = []
+        tile_nodes[x].resize(height)
         for y in range(height):
-            var tile = game_controller.get_tile_by_id(tiles[x][y])
-            if tile != null:
-                get_tree().get_current_scene().get_node("grid").add_child(tile)
-                tile.position.x = x * globals.block_width
-                tile.position.y = y * globals.block_width
+            tile_nodes[x][y] = game_controller.get_tile_by_id(tiles[x][y])
+            if tile_nodes[x][y] != null:
+                get_tree().get_current_scene().get_node("grid").add_child(tile_nodes[x][y])
+                tile_nodes[x][y].position.x = x * globals.block_width
+                tile_nodes[x][y].position.y = y * globals.block_width
+    print(tile_nodes as String)
 
 func add_player_entities_from_data():
     player_entities.resize(player_entitie_data.size())
@@ -122,8 +128,6 @@ func add_level_nodes_to_scene(scene):
         x_pos += move_button.rect_size.x
         new_button.move_num = i
         print((i as String))
-
-    add_enemy_moves_to_listing()
 
 func add_enemy_moves_to_listing():
     # Adds all the enemy move desriptions to the listing
