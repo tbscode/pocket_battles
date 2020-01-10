@@ -11,7 +11,6 @@
 [node name="entities" type="Node2D"]
 
 [node name="rook" type="Sprite" parent="."]
-position = Vector2( 57.5853, 94.2611 )
 texture = ExtResource( 1 )
 offset = Vector2( 16, 16 )
 region_enabled = true
@@ -28,7 +27,6 @@ custom_styles/normal = SubResource( 1 )
 script = ExtResource( 4 )
 
 [node name="queen" type="Sprite" parent="."]
-position = Vector2( 114.072, 80.2639 )
 texture = ExtResource( 1 )
 offset = Vector2( 16, 16 )
 region_enabled = true

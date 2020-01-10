@@ -1,4 +1,8 @@
-# [ See Blog ](https://tbscode.github.io/pocket_battles/)
+
+
+> All graphics are still place holders, will be replaced
+
+## [ See Blog ](https://tbscode.github.io/pocket_battles/)
 
 ## Game Objective
 

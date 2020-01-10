@@ -29,6 +29,9 @@ func get_globals():
 func get_current_level():
     return level_queue.front()
 
+func get_enemy_entities():
+    return enemies
+
 var wait_for_selection = false
 func performe_move_on_current_level():
     get_current_level().performe_move()

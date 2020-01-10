@@ -29,7 +29,7 @@ func center():
 	# Simply centers the gird on the screen after creation
 	position.x = viewportsize.x / 2 - width * globals.block_width * 0.5
 	position.y = viewportsize.y / 2 - height * globals.block_width * 0.5
-	print((position.x as String)+ " was " + (position.y as String))
+    # print((position.x as String)+ " was " + (position.y as String))
 
 func _draw():
 	for i in range(height + 1):
