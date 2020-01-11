@@ -2,15 +2,21 @@
 
 Godot game I'm building within the \#FFSjam on itch.io.
 
+> Graphics are placeholders
+
 ## The Game
 
 It will be a tunbased puzzle stategy game.
 
+### 11/01 Added Tiles and their functionality
+
+The wall tile was implemented so far an blocks moves entering.
+
+<img src="blog/pocket_battles5.gif" width="49%">
+
 ### 09/01 Finished the in game ui
 
 Added all in game ui elements, and connected them to the entities.
-
-<img src="blog/pocket_battles5.gif" width="49%">
 
 ### 07/01 More ui stuff and move selection
 
