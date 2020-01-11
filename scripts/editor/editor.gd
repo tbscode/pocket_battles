@@ -17,6 +17,7 @@ func _ready():
     level.add_level_tiles_from_data()
     level.build_level(game_scene) # Initializes all preloaded scene object
     game_controller.get_current_level().add_player_move_menu()
+    game_controller.add_tiles_to_editor_tile_menu()
     # Load the grid cords forinput processig
     grid = self.get_node("grid")
     # Place the Player Entities as Options in the Player Menu
@@ -26,10 +27,19 @@ func _ready():
     add_enemy_entities_to_menu()
 
 func _input(event):
-    var x_pos = ((event.position.x - grid.position.x) / globals.block_width) as int
-    var y_pos = ((event.position.y - grid.position.y) / globals.block_width) as int
-    var field_vec = [x_pos, y_pos]
-    # print("selected field" + (field_vec as String))
+    if event is InputEventMouseButton:
+        # mouse button event
+        if not event.pressed:
+            # and it was the click down
+            # Get the grid position
+            # Check if the click is contained in the grid:
+            if is_click_event_in_grid(event):
+                if game_controller.wait_for_selection:
+                    var x_pos = ((event.position.x - grid.position.x) / globals.block_width) as int
+                    var y_pos = ((event.position.y - grid.position.y) / globals.block_width) as int
+                    var field_vec = [x_pos, y_pos]
+                    game_controller.field_selected(field_vec)
+                    print("selected field" + (field_vec as String))
 
 func add_enemy_entities_to_menu():
     # Will add all available enemy entites to the menu

@@ -26,6 +26,6 @@ func pressed():
         get_parent().place_on_field(field)
         # The ask the player to set the desired move chain
         game_controller.show_move_menu()
-        yield(game_controller, "moves_selected")
+        # yield(game_controller, "moves_selected")
         # Now wait for the player to hide the move menu, implieing that he is done
 

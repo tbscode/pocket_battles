@@ -41,6 +41,18 @@ func position_on_map():
     position.x = grid.position.x + x * globals.block_width
     position.y = grid.position.y + y * globals.block_width
 
+func place_on_field(field):
+    var grid = game_controller.get_current_grid()
+    position.x = grid.position.x + field[0] * game_controller.globals.block_width
+    position.y = grid.position.y + field[1] * game_controller.globals.block_width
+    attatch_to_main_grid()
+    placed = true
+
+func attatch_to_main_grid():
+    var tree = get_tree()
+    get_parent().remove_child(self)
+    tree.get_current_scene().get_node("enemy_entiti_collection").add_child(self)
+
 func performe_move():
     # Does one move of the move stack
     var move : int = move_queue[move_pointer]

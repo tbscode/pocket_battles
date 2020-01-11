@@ -77,6 +77,7 @@ func expand_player_menu():
 
 func show_move_menu():
     # Will simply move the move emnu in view
+    print("showing the move menu")
     get_tree().get_current_scene().get_node("player_move_menu/menu_container").position.x = 0
 
 func hide_move_menu():
@@ -103,7 +104,12 @@ func state_of_selected_entity_changed(state_id, state):
 
 func add_tiles_to_editor_tile_menu():
     # Adds all available tiles to the editors menu
-    var editor_menu_container = get_current_scene().get_node("tile_menu/margin")
+    var editor_menu_container = get_tree().get_current_scene().get_node("tile_menu/margin")
+    var tile_nodes = tiles.get_children()
+    for i in range(tile_nodes.size()):
+        var tile = tile_nodes[i].duplicate()
+        editor_menu_container.add_child(tile)
+        tile.position.x = i * globals.block_width
 
 func select_position(vec):
     get_tree().get_current_scene().get_node("selector").position = vec
