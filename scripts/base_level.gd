@@ -123,17 +123,16 @@ func add_level_nodes_to_scene(scene):
 
 func add_player_move_menu():
     var x_pos = 0 
-    if not game_controller.get_current_level().edit:
-        var move_button = game_controller.get_reusable_ui_elements().get_node("direction_button")
-        print("got the button" + (move_button.rect_size.x as String))
-        x_pos = 0
-        for i in range(turn_amount):
-            var new_button = move_button.duplicate()
-            new_button.rect_position.x = x_pos
-            get_tree().get_current_scene().get_node("player_move_menu/menu_container/margin/scroll/hbox").add_child(new_button)
-            x_pos += move_button.rect_size.x
-            new_button.move_num = i
-            print((i as String))
+    var move_button = game_controller.get_reusable_ui_elements().get_node("direction_button")
+    print("got the button" + (move_button.rect_size.x as String))
+    x_pos = 0
+    for i in range(turn_amount):
+        var new_button = move_button.duplicate()
+        new_button.rect_position.x = x_pos
+        get_tree().get_current_scene().get_node("player_move_menu/menu_container/margin/scroll/hbox").add_child(new_button)
+        x_pos += move_button.rect_size.x
+        new_button.move_num = i
+        print((i as String))
 
 
 func add_enemy_moves_to_listing():
@@ -182,7 +181,7 @@ func print_json():
         enemie_datas[i] = parse_enemy_todict(enemies[i])
 
     var player_entitie_datas = []
-    player_entitie_datas.resize(enemies.size())
+    player_entitie_datas.resize(player_entities.size())
     for i in range(player_entities.size()):
         player_entitie_datas[i] = parse_player_entitie_todict(player_entities[i])
     

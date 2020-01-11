@@ -15,6 +15,8 @@ var enemy_num : int
 var move_pointer = 0
 var move_queue
 
+var placed = false
+
 func init(_x,_y, entity_name, queue=[]):
     x = _x
     y = _y
@@ -23,10 +25,18 @@ func init(_x,_y, entity_name, queue=[]):
     entity_name = self.entity_name
 
 func _ready():
-    position_on_map()
+    if game_controller.get_current_level().edit:
+        # If in edit mode then initialize a zeroed move queue
+        move_queue = [0]
+        move_queue.resize(game_controller.get_current_level().turn_amount)
+        for i in range(move_queue.size()):
+            move_queue[i] = 0
+    else:
+        position_on_map()
 
 func position_on_map():
     # Sets the enemies position on the map
+    placed = true
     var grid = get_tree().get_nodes_in_group("grid")[0] # Load the worlds grid
     position.x = grid.position.x + x * globals.block_width
     position.y = grid.position.y + y * globals.block_width

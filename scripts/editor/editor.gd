@@ -16,6 +16,7 @@ func _ready():
     level.add_player_entities_from_data()
     level.add_level_tiles_from_data()
     level.build_level(game_scene) # Initializes all preloaded scene object
+    game_controller.get_current_level().add_player_move_menu()
     # Load the grid cords forinput processig
     grid = self.get_node("grid")
     # Place the Player Entities as Options in the Player Menu
@@ -37,6 +38,7 @@ func add_enemy_entities_to_menu():
         # Now add it to the menu with given offset
         var enemy = enemy_entities[i].duplicate()
         enemy.position.x = i * globals.block_width
+        enemy.position.y = 0
         get_tree().get_current_scene().get_node("enemy_entitie_menu").add_child(enemy)
 
 func is_click_event_in_grid(event):

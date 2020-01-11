@@ -101,5 +101,9 @@ func state_of_selected_entity_changed(state_id, state):
     # When one of the direction buttons was pressed
     get_selected_player_entity().change_move_queue(state_id, state)
 
+func add_tiles_to_editor_tile_menu():
+    # Adds all available tiles to the editors menu
+    var editor_menu_container = get_current_scene().get_node("tile_menu/margin")
+
 func select_position(vec):
     get_tree().get_current_scene().get_node("selector").position = vec
