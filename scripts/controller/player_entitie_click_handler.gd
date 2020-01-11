@@ -30,5 +30,6 @@ func pressed():
     else:
         # Reopen the move menu if not jet in battle mode
         print("Pressed but already placed")
+        game_controller.register_as_selected_player_entity(get_parent())
         game_controller.show_move_menu()
         game_controller.select_position(get_parent().position)

@@ -192,6 +192,9 @@ func print_json():
     var level_data_json = JSON.print(level_data)
     print(level_data_json)
 
+func get_tile_node_at(x_pos : int, y_pos : int):
+    return tile_nodes[x_pos][y_pos]
+
 func parse_enemy_todict(enemie):
     # Generates a data dict for one enemy:
     var data = { "name": enemie.name, "x": enemie.x, "y": enemie.y, "moves": enemie.move_queue }
