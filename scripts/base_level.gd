@@ -235,7 +235,13 @@ func performe_move():
 
 
 func remove_player_entity(entity):
-    player_entities.erase(entity)
+    var num = entity.entity_num
+    get_tree().get_current_scene().get_node("player_entiti_collection").remove_child(entity)
+    player_entities.remove(num)
+    # TODO: remove that enemies move display
+    for i in range(num, player_entities.size()):
+        player_entities[i].entity_num -= 1
+    print(player_entities.size() as String)
 
 func remove_enemy(entity):
     var num = entity.enemy_num
