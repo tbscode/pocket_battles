@@ -9,6 +9,7 @@ var x = 0
 var y = 0
 
 var entitie_name
+var entity_num
 
 var globals
 
@@ -97,4 +98,5 @@ func performe_move():
 
 func process_after_fight():
     if get_node("type").health <= 0:
+        print("entity, dead")
         game_controller.get_current_level().remove_player_entity(self)

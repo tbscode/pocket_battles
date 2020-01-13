@@ -74,6 +74,7 @@ func add_player_entities_from_data():
         var name = player_entitie_data[i]["name"]
         player_entities[i] = get_player_node_byname(game_controller.player_entities, name)
         player_entities[i].init(name)
+        player_entities[i].entity_num = i
 
 func get_enemy_node_byname(enemy_nodes, name):
     # load the enmy sceen add it to the tree
@@ -237,4 +238,10 @@ func remove_player_entity(entity):
     player_entities.erase(entity)
 
 func remove_enemy(entity):
-    player_entities.erase(entity)
+    var num = entity.enemy_num
+    get_tree().get_current_scene().get_node("enemy_container").remove_child(entity)
+    enemies.remove(num)
+    # TODO: remove that enemies move display
+    for i in range(num, enemies.size()):
+        enemies[i].enemy_num -= 1
+    print(enemies.size() as String)

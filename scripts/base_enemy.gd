@@ -36,6 +36,7 @@ func _ready():
 
 func position_on_map():
     # Sets the enemies position on the map
+    print(enemy_num as String)
     placed = true
     var grid = get_tree().get_nodes_in_group("grid")[0] # Load the worlds grid
     position.x = grid.position.x + x * globals.block_width
