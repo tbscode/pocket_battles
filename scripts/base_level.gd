@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var edit = false
 
@@ -232,6 +232,21 @@ func performe_move():
                 print("Ey you on same position" + (i as String) + (j as String))
                 entitie.get_node("type").fight_against(all_entities[j].get_node("type"))
         i += 1
+
+func draw_move_connection_indicators():
+    # Simply Draws a line between entities and moves:
+    # TODO: Save these postions to now constantly go through all nodes!!!!!
+    var enemy_move_display = get_tree().get_current_scene().get_node("enemy_move_display/margin/scroll/vbox")
+    var container = enemy_move_display.get_node("../../../")
+    var offset = globals.block_width / 2
+    for e in enemies:
+        var move_disp = enemy_move_display.get_children()[e.enemy_num]
+        draw_line(Vector2( e.position.x + offset, e.position.y + offset ), \
+			Vector2( container.position.x + move_disp.position.x , container.position.y + move_disp.position.y ), Color.green)
+
+func _draw():
+    if not edit:
+        draw_move_connection_indicators()
 
 
 func remove_player_entity(entity):

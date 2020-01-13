@@ -16,7 +16,6 @@ func _ready():
     level.add_player_entities_from_data()
     level.add_level_tiles_from_data()
     level.build_level(game_scene) # Initializes all preloaded scene object
-    game_controller.get_current_level().add_player_move_menu()
     game_controller.add_tiles_to_editor_tile_menu()
     # Load the grid cords forinput processig
     grid = self.get_node("grid")

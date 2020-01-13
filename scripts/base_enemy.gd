@@ -103,7 +103,11 @@ func performe_move():
                 print("no next tile")
     position_on_map()
 
+func change_move_queue(state_id, state):
+    move_queue[state_id] = state
+
 func process_after_fight():
     if get_node("type").health <= 0:
         game_controller.get_current_level().remove_enemy(self)
+
 
