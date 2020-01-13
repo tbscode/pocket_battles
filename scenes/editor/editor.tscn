@@ -6,8 +6,9 @@
 [ext_resource path="res://assets/selection.png" type="Texture" id=4]
 [ext_resource path="res://assets/ui/redup_styleboxtexture.tres" type="StyleBox" id=5]
 [ext_resource path="res://assets/ui/red_pressed.png" type="Texture" id=6]
-[ext_resource path="res://scripts/controller/hide_button_move_menu.gd" type="Script" id=7]
+[ext_resource path="res://controller/hide_button_move_menu.gd" type="Script" id=7]
 [ext_resource path="res://assets/arrows_x32.png" type="Texture" id=8]
+
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 6 )

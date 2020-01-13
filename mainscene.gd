@@ -21,6 +21,7 @@ func _ready():
     print("Enemies: " + (level.enemies as String))
     print("Player Entities: " + (level.player_entities as String))
     level.print_json()
+    game_controller.hide_all_move_buttons()
 
 func _input(event):
     if event is InputEventMouseButton:

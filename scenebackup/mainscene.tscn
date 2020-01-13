@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://mainscene.gd" type="Script" id=1]
 [ext_resource path="res://scripts/render/grid.gd" type="Script" id=2]
@@ -6,7 +6,11 @@
 [ext_resource path="res://assets/ui/red_pressed.png" type="Texture" id=4]
 [ext_resource path="res://assets/ui/red.png" type="Texture" id=5]
 [ext_resource path="res://controller/button_next.gd" type="Script" id=6]
-[ext_resource path="res://assets/selection.png" type="Texture" id=7]
+[ext_resource path="res://scripts/expand_button.gd" type="Script" id=7]
+[ext_resource path="res://controller/hide_player_menu.gd" type="Script" id=8]
+[ext_resource path="res://controller/hide_button_move_menu.gd" type="Script" id=9]
+[ext_resource path="res://assets/selection.png" type="Texture" id=10]
+
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
@@ -74,26 +78,48 @@ margin_bottom = 297.0
 
 [node name="player_menu" type="Node" parent="."]
 
+[node name="expand_button" type="Button" parent="player_menu"]
+margin_left = 34.478
+margin_top = 7.53677
+margin_right = 363.478
+margin_bottom = 38.5368
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Player Menu"
+script = ExtResource( 7 )
+
 [node name="menu_container" type="Node2D" parent="player_menu"]
-position = Vector2( 0, 9.44089 )
+position = Vector2( 0, -200 )
 
 [node name="MarginContainer" type="MarginContainer" parent="player_menu/menu_container"]
 margin_right = 404.0
-margin_bottom = 53.0
+margin_bottom = 150.0
 
 [node name="background" type="NinePatchRect" parent="player_menu/menu_container/MarginContainer"]
 margin_right = 404.0
-margin_bottom = 53.0
+margin_bottom = 150.0
 texture = ExtResource( 5 )
 patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 5
 
+[node name="hide_button" type="Button" parent="player_menu/menu_container"]
+margin_left = 35.9853
+margin_top = 158.271
+margin_right = 364.985
+margin_bottom = 189.271
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Hide"
+script = ExtResource( 8 )
+
 [node name="player_move_menu" type="Node" parent="."]
 
 [node name="menu_container" type="Node2D" parent="player_move_menu"]
-position = Vector2( -0.468414, 394.107 )
+position = Vector2( 420, 383 )
 
 [node name="margin" type="MarginContainer" parent="player_move_menu/menu_container"]
 margin_top = -6.0
@@ -118,7 +144,18 @@ margin_bottom = 76.0
 
 [node name="hbox" type="HBoxContainer" parent="player_move_menu/menu_container/margin/scroll"]
 
+[node name="hide_button" type="Button" parent="player_move_menu/menu_container"]
+margin_left = 34.4107
+margin_top = 75.6413
+margin_right = 363.41
+margin_bottom = 106.641
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "Hide"
+script = ExtResource( 9 )
+
 [node name="selector" type="Sprite" parent="."]
 position = Vector2( -32, 0 )
-texture = ExtResource( 7 )
+texture = ExtResource( 10 )
 offset = Vector2( 16, 16 )

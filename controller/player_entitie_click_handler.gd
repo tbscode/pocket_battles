@@ -8,11 +8,7 @@ func pressed():
         # Fist clicking the Player node to use
         game_controller.register_as_selected_player_entity(get_parent())
         # Set the states of all direction buttons to the entities move queue
-        var move_buttons = game_controller.get_move_button_container().get_children()
-        for i in range(get_parent().move_queue.size()):
-            move_buttons[i].state = get_parent().move_queue[i]
-            move_buttons[i].change_state_region()
-        game_controller.hide_player_menu()
+        game_controller.reload_move_menu(self)
         game_controller.wait_for_field_selection()
         yield(game_controller, "field_selected")
         # Then click the field to place it in
@@ -23,13 +19,12 @@ func pressed():
         get_parent().place_on_field(field)
         # The ask the player to set the desired move chain
         game_controller.show_move_menu()
-        yield(game_controller, "moves_selected")
         # Now wait for the player to hide the move menu, implieing that he is done
         game_controller.get_current_level().reposition_player_entities_in_menu()
-        game_controller.expand_player_menu()
     else:
         # Reopen the move menu if not jet in battle mode
         print("Pressed but already placed")
         game_controller.register_as_selected_player_entity(get_parent())
+        game_controller.reload_move_menu(self)
         game_controller.show_move_menu()
         game_controller.select_position(get_parent().position)

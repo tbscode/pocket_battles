@@ -2,11 +2,12 @@
 
 [ext_resource path="res://assets/ui/redup_styleboxtexture.tres" type="StyleBox" id=1]
 [ext_resource path="res://assets/ui/red_pressed.png" type="Texture" id=2]
-[ext_resource path="res://scripts/controller/hide_button.gd" type="Script" id=3]
+[ext_resource path="res://controller/hide_button.gd" type="Script" id=3]
 [ext_resource path="res://assets/arrows_x32.png" type="Texture" id=4]
 [ext_resource path="res://scripts/enemy_scripts/enemy_move_container.gd" type="Script" id=5]
 [ext_resource path="res://assets/ui/red.png" type="Texture" id=6]
-[ext_resource path="res://scripts/controller/enemy_moves_sprite.gd" type="Script" id=7]
+[ext_resource path="res://controller/enemy_moves_sprite.gd" type="Script" id=7]
+
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )

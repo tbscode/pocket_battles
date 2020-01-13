@@ -22,7 +22,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-game_controller="*res://scripts/controller/game_controller.gd"
+game_controller="*res://controller/game_controller.gd"
 
 [display]
 

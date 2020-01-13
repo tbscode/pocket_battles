@@ -78,7 +78,20 @@ func expand_player_menu():
 func show_move_menu():
     # Will simply move the move emnu in view
     print("showing the move menu")
+    self.un_hide_all_move_buttons()
     get_tree().get_current_scene().get_node("player_move_menu/menu_container").position.x = 0
+    
+func reload_move_menu(node):
+	var move_buttons = self.get_move_button_container().get_children()
+	for i in range(node.get_parent().move_queue.size()):
+		move_buttons[i].state = node.get_parent().move_queue[i]
+		move_buttons[i].change_state_region()
+
+func hide_all_move_buttons():
+	get_move_button_container().set_visible(false)
+
+func un_hide_all_move_buttons():
+	get_move_button_container().set_visible(true)
 
 func hide_move_menu():
     # Will simply move the move emnu in view
@@ -113,4 +126,3 @@ func add_tiles_to_editor_tile_menu():
 
 func select_position(vec):
     get_tree().get_current_scene().get_node("selector").position = vec
-
