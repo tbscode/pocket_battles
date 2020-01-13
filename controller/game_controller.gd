@@ -12,8 +12,7 @@ var tiles = preload("res://scenes/tiles.tscn").instance()
 
 var selected_player_entity
 
-var edit_mode = "select" # Holds the mode the edit state is in if using the editor
-
+var edit_mode = "select"
 signal field_selected
 signal moves_selected
 
@@ -107,7 +106,7 @@ func register_as_selected_player_entity(entity):
     selected_player_entity = entity
 
 func deregister_unselect_entity():
-    selected_player_entity null
+    selected_player_entity = null
 
 func get_selected_player_entity():
     # get the currently selected player entity

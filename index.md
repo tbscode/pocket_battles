@@ -6,9 +6,13 @@ Godot game I'm building within the \#FFSjam on itch.io.
 
 ## The Game
 
-It will be a tunbased puzzle stategy game.
+It will be a tun based puzzle strategy game.
 
-### 13/01 Implemented the battle system
+### 13/01 Added Level editor and Implemented the battle system
+
+Added a level editor for the game, especially to be able to test edge-case level scenarios.
+
+<img src="blog/pocket_battle7.gif" width="49%">
 
 Entities will now fight at the end of the turn, if they end up in the same position.
 
