@@ -104,6 +104,9 @@ func register_as_selected_player_entity(entity):
     # for the entity to call when clicked
     selected_player_entity = entity
 
+func deregister_unselect_entity():
+    selected_player_entity = null
+
 func get_selected_player_entity():
     # get the currently selected player entity
     return selected_player_entity

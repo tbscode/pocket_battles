@@ -13,14 +13,21 @@ func pressed():
         yield(game_controller, "field_selected")
         # Then click the field to place it in
         var field = game_controller.selected_field
-        get_parent().x = field[0]
-        get_parent().y = field[1]
         print((field as String))
-        get_parent().place_on_field(field)
-        # The ask the player to set the desired move chain
-        game_controller.show_move_menu()
-        # Now wait for the player to hide the move menu, implieing that he is done
-        game_controller.get_current_level().reposition_player_entities_in_menu()
+
+        #Now check if an entity is allowed on that field
+        var tile_node = game_controller.get_current_level().get_tile_node_at(field[0],field[1])
+        if tile_node == null or tile_node.get_node("type").can_place_entity_on():
+            get_parent().x = field[0]
+            get_parent().y = field[1]
+            get_parent().place_on_field(field)
+            # The ask the player to set the desired move chain
+            game_controller.show_move_menu()
+            # Now wait for the player to hide the move menu, implieing that he is done
+            game_controller.get_current_level().reposition_player_entities_in_menu()
+        else:
+            # Deselect this entity again
+            game_controller.deregister_unselect_entity()
     else:
         # Reopen the move menu if not jet in battle mode
         print("Pressed but already placed")

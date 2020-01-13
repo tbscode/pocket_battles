@@ -13,3 +13,6 @@ func enter():
 
 func exit():
     pass
+
+func can_place_entity_on():
+    return false
