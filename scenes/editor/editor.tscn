@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/editor/editor.gd" type="Script" id=1]
 [ext_resource path="res://scripts/render/grid_editor.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/ui/redup_styleboxtexture.tres" type="StyleBox" id=5]
 [ext_resource path="res://assets/ui/red_pressed.png" type="Texture" id=6]
 [ext_resource path="res://scripts/controller/hide_button_move_menu.gd" type="Script" id=7]
+[ext_resource path="res://assets/arrows_x32.png" type="Texture" id=8]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 6 )
@@ -23,6 +24,8 @@ margin_left = 3.0
 margin_right = 3.0
 margin_top = 3.0
 margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="editor" type="Node2D"]
 script = ExtResource( 1 )
@@ -121,3 +124,53 @@ patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 5
+
+[node name="tool_menu" type="Node2D" parent="."]
+
+[node name="margin" type="MarginContainer" parent="tool_menu"]
+margin_right = 402.0
+margin_bottom = 39.0
+
+[node name="background" type="NinePatchRect" parent="tool_menu/margin"]
+margin_right = 402.0
+margin_bottom = 39.0
+texture = ExtResource( 3 )
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 5
+
+[node name="edit" type="Sprite" parent="tool_menu/margin"]
+texture = ExtResource( 8 )
+offset = Vector2( 16, 16 )
+region_enabled = true
+region_rect = Rect2( 64, 64, 32, 32 )
+
+[node name="editclick" type="Button" parent="tool_menu/margin/edit"]
+margin_right = 32.0
+margin_bottom = 32.0
+custom_styles/normal = SubResource( 3 )
+
+[node name="delete" type="Sprite" parent="tool_menu/margin"]
+position = Vector2( 32, 0 )
+texture = ExtResource( 8 )
+offset = Vector2( 16, 16 )
+region_enabled = true
+region_rect = Rect2( 32, 32, 32, 32 )
+
+[node name="deleteclick" type="Button" parent="tool_menu/margin/delete"]
+margin_right = 32.0
+margin_bottom = 32.0
+custom_styles/normal = SubResource( 3 )
+
+[node name="build" type="Sprite" parent="tool_menu/margin"]
+position = Vector2( 64, 0 )
+texture = ExtResource( 8 )
+offset = Vector2( 16, 16 )
+region_enabled = true
+region_rect = Rect2( 96, 32, 32, 32 )
+
+[node name="buildclick" type="Button" parent="tool_menu/margin/build"]
+margin_right = 32.0
+margin_bottom = 32.0
+custom_styles/normal = SubResource( 3 )

@@ -210,3 +210,31 @@ func performe_move():
     for player_entity in player_entities:
         if player_entity.placed:
             player_entity.performe_move()
+
+    # After all entities performed there move:
+    var all_entities = []
+    all_entities.resize((player_entities.size() + enemies.size()))
+    var i = 0
+    for e in enemies:
+        all_entities[i] = e
+        i += 1
+    for e in player_entities:
+        all_entities[i] = e
+        i += 1
+    i = 0
+    for entitie in all_entities:
+        # Check if that entitie is in the same position with another
+        for j in range(i + 1, all_entities.size()):
+            if entitie.x == all_entities[j].x and entitie.y == all_entities[j].y:
+                # They are at the same position
+                # Let the fight
+                print("Ey you on same position" + (i as String) + (j as String))
+                entitie.get_node("type").fight_against(all_entities[j].get_node("type"))
+        i += 1
+
+
+func remove_player_entity(entity):
+    player_entities.erase(entity)
+
+func remove_enemy(entity):
+    player_entities.erase(entity)

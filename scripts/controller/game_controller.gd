@@ -113,3 +113,4 @@ func add_tiles_to_editor_tile_menu():
 
 func select_position(vec):
     get_tree().get_current_scene().get_node("selector").position = vec
+

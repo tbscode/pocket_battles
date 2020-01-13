@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/tileset.png" type="Texture" id=1]
 [ext_resource path="res://scripts/base_wall.gd" type="Script" id=2]
 [ext_resource path="res://scripts/tile_scripts/wall_type.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="tiles" type="Node2D"]
 
@@ -15,3 +17,8 @@ script = ExtResource( 2 )
 
 [node name="type" type="Node" parent="wall"]
 script = ExtResource( 3 )
+
+[node name="clickhandler" type="Button" parent="wall"]
+margin_right = 32.0
+margin_bottom = 32.0
+custom_styles/normal = SubResource( 1 )

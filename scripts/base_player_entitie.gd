@@ -95,3 +95,6 @@ func performe_move():
                 print("no next tile")
     position_on_map()
 
+func process_after_fight():
+    if get_node("type").health <= 0:
+        game_controller.get_current_level().remove_player_entity(self)
