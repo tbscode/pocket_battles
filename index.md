@@ -8,6 +8,12 @@ Godot game I'm building within the \#FFSjam on itch.io.
 
 It will be a tunbased puzzle stategy game.
 
+### 13/01 Implemented the battle system
+
+Entities will now fight at the end of the turn, if they end up in the same position.
+
+<img src="blog/pocket_battle6.gif" width="49%">
+
 ### 11/01 Added Tiles and their functionality
 
 The wall tile was implemented so far an blocks moves entering.
