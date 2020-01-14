@@ -130,3 +130,12 @@ func add_tiles_to_editor_tile_menu():
 
 func select_position(vec):
     get_tree().get_current_scene().get_node("selector").position = vec
+
+var selected_editor_tile
+func set_selected_editor_tile(tile):
+    # First desect all the other stuff
+    selected_field = null
+    wait_for_selection = false
+    selected_player_entity = null
+    emit_signal("field_selected")
+    selected_editor_tile = tile

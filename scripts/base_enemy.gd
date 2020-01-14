@@ -42,17 +42,22 @@ func position_on_map():
     position.x = grid.position.x + x * globals.block_width
     position.y = grid.position.y + y * globals.block_width
 
-func place_on_field(field):
+func place_on_field(field,scene=null):
     var grid = game_controller.get_current_grid()
     position.x = grid.position.x + field[0] * game_controller.globals.block_width
     position.y = grid.position.y + field[1] * game_controller.globals.block_width
-    attatch_to_main_grid()
+    attatch_to_main_grid(scene)
     placed = true
 
-func attatch_to_main_grid():
+func attatch_to_main_grid(scene=null):
     var tree = get_tree()
-    get_parent().remove_child(self)
-    tree.get_current_scene().get_node("enemy_entiti_collection").add_child(self)
+    # In The editor we dont want to remove the tile
+    if not game_controller.get_current_level().edit:
+        get_parent().remove_child(self)
+    if scene == null:
+        tree.get_current_scene().get_node("enemy_entiti_collection").add_child(self)
+    else:
+        scene.get_node("enemy_entiti_collection").add_child(self)
 
 func performe_move():
     # Does one move of the move stack

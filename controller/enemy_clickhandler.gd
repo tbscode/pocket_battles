@@ -17,7 +17,9 @@ func pressed():
         else:
             # The Editor Case 
             # TODO: Rename Game controller selection methods
-            game_controller.register_as_selected_player_entity(get_parent())
+            # Make a copy of that entity TODO: Delete it later
+            var entity_copy = get_parent().duplicate()
+            game_controller.register_as_selected_player_entity(entity_copy)
             # Set the states of all direction buttons to the entities move queue
             var move_buttons = game_controller.get_move_button_container().get_children()
             for i in range(get_parent().move_queue.size()):
@@ -27,14 +29,18 @@ func pressed():
             yield(game_controller, "field_selected")
             # Then click the field to place it in
             var field = game_controller.selected_field
-            get_parent().x = field[0]
-            get_parent().y = field[1]
+            if field == null:
+                return
+            entity_copy.x = field[0]
+            entity_copy.y = field[1]
             print((field as String))
-            get_parent().place_on_field(field)
+            game_controller.get_current_level().enemies.push_back(entity_copy)
+            entity_copy.place_on_field(field, get_tree().get_current_scene())
             # The ask the player to set the desired move chain
             game_controller.show_move_menu()
             # yield(game_controller, "moves_selected")
             # Now wait for the player to hide the move menu, implieing that he is done
+            game_controller.get_current_level().print_json()
     else:
         if enemy_parent.placed:
             game_controller.select_position(enemy_parent.position)
