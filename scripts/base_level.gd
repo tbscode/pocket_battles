@@ -258,6 +258,15 @@ func remove_player_entity(entity):
         player_entities[i].entity_num -= 1
     print(player_entities.size() as String)
 
+func add_tile_by_id_if_not_present(x_pos, y_pos, id):
+    if tiles[x_pos][y_pos] != id:
+        tiles[x_pos][y_pos] = id
+        tile_nodes[x_pos][y_pos] = game_controller.get_tile_by_id(id)
+        get_tree().get_current_scene().get_node("grid").add_child(tile_nodes[x_pos][y_pos])
+        tile_nodes[x_pos][y_pos].position.x = x_pos * globals.block_width
+        tile_nodes[x_pos][y_pos].position.y = y_pos * globals.block_width
+        print("added tile")
+
 func remove_enemy(entity):
     var num = entity.enemy_num
     get_tree().get_current_scene().get_node("enemy_container").remove_child(entity)

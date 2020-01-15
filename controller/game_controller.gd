@@ -12,7 +12,7 @@ var tiles = preload("res://scenes/tiles.tscn").instance()
 
 var selected_player_entity
 
-var edit_mode = "select"
+var edit_mode = "select" # select, draw
 signal field_selected
 signal moves_selected
 
