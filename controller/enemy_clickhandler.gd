@@ -15,6 +15,7 @@ func pressed():
             # TODO: Apparently changing moves of 
             game_controller.show_move_menu()
         else:
+            game_controller.edit_mode = "select"
             # The Editor Case 
             # TODO: Rename Game controller selection methods
             # Make a copy of that entity TODO: Delete it later

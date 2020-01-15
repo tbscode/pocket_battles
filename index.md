@@ -8,6 +8,12 @@ Godot game I'm building within the \#FFSjam on itch.io.
 
 It will be a tun based puzzle strategy game.
 
+### 15/01 Editor almost done
+
+Draw drawing and opponent placing and on is now implemented.
+
+<img src="blog/pocket_battles9.gif" width="49%">
+
 ### 13/01 Added Level editor and Implemented the battle system
 
 Added a level editor for the game, especially to be able to test edge-case level scenarios.
