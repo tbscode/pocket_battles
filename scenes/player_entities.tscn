@@ -44,7 +44,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 10, 10 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "move_to_battle_view2"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -71,8 +71,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 4, 4 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "battle_menu"
+[sub_resource type="Animation" id=7]
 step = 1.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("battle_view:position")
@@ -116,7 +115,7 @@ script = ExtResource( 4 )
 
 [node name="animations" type="AnimationPlayer" parent="knight"]
 anims/move_to_battle_view1 = SubResource( 5 )
-anims/move_to_battle_view2 = SubResource( 7 )
+anims/move_to_battle_view2 = SubResource( 6 )
 script = ExtResource( 5 )
 
 [node name="battle_view" type="Node2D" parent="."]
@@ -144,4 +143,4 @@ texture = ExtResource( 7 )
 
 [node name="animations" type="AnimationPlayer" parent="battle_view"]
 root_node = NodePath("../..")
-anims/battle_menu = SubResource( 6 )
+anims/battle_menu = SubResource( 7 )

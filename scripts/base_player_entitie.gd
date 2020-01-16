@@ -13,6 +13,8 @@ var entity_num
 
 var globals
 
+signal move_performed
+
 
 func _ready():
     globals = game_controller.get_globals()
@@ -46,6 +48,11 @@ func position_on_map():
     var grid = get_tree().get_nodes_in_group("grid")[0] # Load the worlds grid
     position.x = grid.position.x + x * globals.block_width
     position.y = grid.position.y + y * globals.block_width
+
+func calculate_new_position_on_map(x_pos, y_pos):
+    # Does same as above but without changing it
+    var grid = get_tree().get_nodes_in_group("grid")[0] # Load the worlds grid
+    return Vector2(grid.position.x + x_pos * globals.block_width,grid.position.y + y_pos * globals.block_width)
 
 func performe_move():
     # Does one move of the move stack
@@ -88,13 +95,15 @@ func performe_move():
                 current_tile.get_node("type").exit()
             else:
                 print("no current tile")
+            var future_pos = calculate_new_position_on_map(future_x, future_y)
+            generate_movement_animation_and_play(future_pos)
             x = future_x
             y = future_y
             if next_tile != null:
                 next_tile.get_node("type").enter()
             else:
                 print("no next tile")
-    position_on_map()
+    # position_on_map()
 
 func process_after_fight():
     if get_node("type").health <= 0:
@@ -108,6 +117,19 @@ func load_own_character_in_battle(first):
     else:
         game_controller.get_battle_menu().remove_entity2()
 
+func generate_movement_animation_and_play(future):
+    # Based on the given direction this will return a animation for that
+    var animation = Animation.new()
+    var leng = 0.5
+    animation.set_length(leng) # Half a second
+    animation.add_track(Animation.TYPE_VALUE)
+    animation.track_set_path(0, ".:position")
+    animation.track_insert_key(0, 0, position)
+    animation.track_insert_key(0, leng, future)
+    $animations.add_animation("move", animation)
+    $animations.play("move")
+    yield($animations, "animation_finished")
+    emit_signal("move_performed")
 
 func fight_against(entity, first):
     # first is set if first character in battle
