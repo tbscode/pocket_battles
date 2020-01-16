@@ -9,6 +9,8 @@ var y : int = 2
 
 var entity_name
 
+signal move_performed
+
 var enemy_num : int
 
 # the moves are emuleted by an array of numbers and a pointer
@@ -59,7 +61,9 @@ func attatch_to_main_grid(scene=null):
     else:
         scene.get_node("enemy_entiti_collection").add_child(self)
 
+var was_move_made = false
 func performe_move():
+    was_move_made = false
     # Does one move of the move stack
     var move : int = move_queue[move_pointer]
     move_pointer += 1
@@ -76,7 +80,8 @@ func performe_move():
 
     match move:
         0:
-            pass
+            print("Nothing to do")
+            return
         1:# up
             if y > 0:
                 future_y -= 1
@@ -102,6 +107,7 @@ func performe_move():
                 print("no current tile")
             var future_pos = calculate_new_position_on_map(future_x, future_y)
             generate_movement_animation_and_play(future_pos)
+            was_move_made = true
 
             x = future_x
             y = future_y
@@ -109,7 +115,6 @@ func performe_move():
                 next_tile.get_node("type").enter()
             else:
                 print("no next tile")
-    position_on_map()
 
 func change_move_queue(state_id, state):
     move_queue[state_id] = state
@@ -142,8 +147,15 @@ func generate_movement_animation_and_play(future):
     $animations.add_animation("move", animation)
     $animations.play("move")
     yield($animations, "animation_finished")
+    print("move done")
+    was_move_made = false
     emit_signal("move_performed")
 
+func take_battle_position(first):
+    if first:
+        $animations.play("move_to_battle_view1")
+    else:
+        $animations.play("move_to_battle_view2")
 
 func fight_against(entity, first):
     # first is set if first character in battle

@@ -54,7 +54,9 @@ func calculate_new_position_on_map(x_pos, y_pos):
     var grid = get_tree().get_nodes_in_group("grid")[0] # Load the worlds grid
     return Vector2(grid.position.x + x_pos * globals.block_width,grid.position.y + y_pos * globals.block_width)
 
+var was_move_made = false
 func performe_move():
+    was_move_made = false
     # Does one move of the move stack
     var move : int = move_queue[move_pointer]
     move_pointer += 1
@@ -71,7 +73,8 @@ func performe_move():
 
     match move:
         0:
-            pass
+            print("Nothing to do")
+            return
         1:# up
             if y > 0:
                 future_y -= 1
@@ -97,13 +100,14 @@ func performe_move():
                 print("no current tile")
             var future_pos = calculate_new_position_on_map(future_x, future_y)
             generate_movement_animation_and_play(future_pos)
+            was_move_made = true
             x = future_x
             y = future_y
             if next_tile != null:
                 next_tile.get_node("type").enter()
             else:
                 print("no next tile")
-    # position_on_map()
+
 
 func process_after_fight():
     if get_node("type").health <= 0:
@@ -129,7 +133,14 @@ func generate_movement_animation_and_play(future):
     $animations.add_animation("move", animation)
     $animations.play("move")
     yield($animations, "animation_finished")
+    was_move_made = false
     emit_signal("move_performed")
+
+func take_battle_position(first):
+    if first:
+        $animations.play("move_to_battle_view1")
+    else:
+        $animations.play("move_to_battle_view2")
 
 func fight_against(entity, first):
     # first is set if first character in battle

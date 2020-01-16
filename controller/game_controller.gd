@@ -37,6 +37,8 @@ func get_enemy_entities():
 var wait_for_selection = false
 func performe_move_on_current_level():
     get_current_level().performe_move()
+    yield(get_current_level(), "performed_moves")
+    get_current_level().update()
 
 func get_current_grid():
     return get_tree().get_current_scene().get_node("grid")

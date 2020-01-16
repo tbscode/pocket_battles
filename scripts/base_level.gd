@@ -17,6 +17,8 @@ var globals = preload("res://globals.gd")
 
 var turn_amount # every level has a locked amount of turns
 
+signal performed_moves
+
 func init(width, height):
     tiles.resize(width)
     for i in range(tiles.size()):
@@ -222,6 +224,18 @@ func performe_move():
     for e in player_entities:
         all_entities[i] = e
         i += 1
+
+    # Wait untill all animations finished
+    i = 0
+    for e in all_entities:
+        if e.was_move_made:
+            print("waiting on " + (i as String))
+            # This is some fancy multithreading stuff, im pretty certain no deadlock can occur
+            yield(e, "move_performed")
+        i += 1
+
+    game_controller.get_current_level().update()
+
     i = 0
     for entitie in all_entities:
         # Check if that entitie is in the same position with another
@@ -231,12 +245,15 @@ func performe_move():
                 # Let the fight
                 print("Ey you on same position" + (i as String) + (j as String))
                 game_controller.show_battle_menu()
+                entitie.take_battle_position(true)
+                all_entities[j].take_battle_position(false)
                 yield(game_controller, "animation_finished")
                 entitie.fight_against(all_entities[j], true)
                 all_entities[j].fight_against(entitie, false)
                 entitie.process_after_fight()
                 all_entities[j].process_after_fight()
         i += 1
+    emit_signal("performed_moves")
 
 func draw_move_connection_indicators():
     # Simply Draws a line between entities and moves:
@@ -244,6 +261,7 @@ func draw_move_connection_indicators():
     var enemy_move_display = get_tree().get_current_scene().get_node("enemy_move_display/margin/scroll/vbox")
     var container = enemy_move_display.get_node("../../../")
     var offset = globals.block_width / 2
+    print("updating")
     for e in enemies:
         var move_disp = enemy_move_display.get_children()[e.enemy_num]
         draw_line(Vector2( e.position.x + offset, e.position.y + offset ), \
