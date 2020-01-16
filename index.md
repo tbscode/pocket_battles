@@ -8,6 +8,12 @@ Godot game I'm building within the \#FFSjam on itch.io.
 
 It will be a tun based puzzle strategy game.
 
+### 16/01 Adding Animations
+
+Before I change the graphics i can improved the look by adding some animations.
+
+<img src="blog/pocket_battles10.gif" width="49%">
+
 ### 15/01 Editor almost done
 
 Draw drawing and opponent placing and on is now implemented.
