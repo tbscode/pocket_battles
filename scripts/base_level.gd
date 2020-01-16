@@ -231,8 +231,11 @@ func performe_move():
                 # Let the fight
                 print("Ey you on same position" + (i as String) + (j as String))
                 game_controller.show_battle_menu()
+                yield(game_controller, "animation_finished")
                 entitie.fight_against(all_entities[j], true)
                 all_entities[j].fight_against(entitie, false)
+                entitie.process_after_fight()
+                all_entities[j].process_after_fight()
         i += 1
 
 func draw_move_connection_indicators():

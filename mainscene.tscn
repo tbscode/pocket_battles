@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://mainscene.gd" type="Script" id=1]
 [ext_resource path="res://scripts/render/grid.gd" type="Script" id=2]
@@ -11,7 +11,7 @@
 [ext_resource path="res://assets/Males/Males.png" type="Texture" id=9]
 [ext_resource path="res://assets/platform.png" type="Texture" id=10]
 
-[sub_resource type="StyleBoxTexture" id=1]
+[sub_resource type="StyleBoxTexture" id=7]
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 48, 48 )
 margin_left = 3.0
@@ -19,13 +19,29 @@ margin_right = 3.0
 margin_top = 3.0
 margin_bottom = 3.0
 
-[sub_resource type="StyleBoxTexture" id=2]
+[sub_resource type="StyleBoxTexture" id=8]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 48, 48 )
 margin_left = 3.0
 margin_right = 3.0
 margin_top = 3.0
 margin_bottom = 5.0
+
+[sub_resource type="Animation" id=6]
+resource_name = "battle_menu"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("battle_view:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.992727 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 500, 33.32 ), Vector2( 0, 33.32 ) ]
+}
 
 [node name="sroot" type="Node2D"]
 script = ExtResource( 1 )
@@ -44,8 +60,8 @@ margin_top = 530.211
 margin_right = 365.421
 margin_bottom = 594.211
 custom_styles/hover = ExtResource( 3 )
-custom_styles/pressed = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
 text = "Move"
 script = ExtResource( 6 )
 
@@ -127,13 +143,12 @@ texture = ExtResource( 7 )
 offset = Vector2( 16, 16 )
 
 [node name="battle_view" type="Node2D" parent="."]
-position = Vector2( 543.979, 33.3201 )
+position = Vector2( 500, 33.32 )
 z_index = 1
 script = ExtResource( 8 )
 
 [node name="entity1" type="Node2D" parent="battle_view"]
 position = Vector2( 36.7441, 293.952 )
-scale = Vector2( 1, 1 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -166,3 +181,7 @@ texture = ExtResource( 10 )
 [node name="platform2" type="Sprite" parent="battle_view"]
 position = Vector2( 127.101, 409.78 )
 texture = ExtResource( 10 )
+
+[node name="animations" type="AnimationPlayer" parent="battle_view"]
+root_node = NodePath("../..")
+anims/battle_menu = SubResource( 6 )

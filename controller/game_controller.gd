@@ -15,6 +15,7 @@ var selected_player_entity
 var edit_mode = "select" # select, draw
 signal field_selected
 signal moves_selected
+signal animation_finished # We wont play animation concurrently so one signal
 
 var selected_enemy_move_background = load("res://assets/ui/red_pressed.png")
 var un_selected_enemy_move_background = load("res://assets/ui/red.png")
@@ -144,4 +145,8 @@ func get_battle_menu():
     return get_tree().get_current_scene().get_node("battle_view")
 
 func show_battle_menu():
-    get_battle_menu().position.x = 0
+    var animations = get_battle_menu().get_node("animations") 
+    animations.play("battle_menu")
+    yield(animations, "animation_finished")
+    emit_signal("animation_finished")
+    #get_battle_menu().position.x = 0
