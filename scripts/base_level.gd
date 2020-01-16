@@ -230,7 +230,9 @@ func performe_move():
                 # They are at the same position
                 # Let the fight
                 print("Ey you on same position" + (i as String) + (j as String))
-                entitie.get_node("type").fight_against(all_entities[j].get_node("type"))
+                game_controller.show_battle_menu()
+                entitie.fight_against(all_entities[j], true)
+                all_entities[j].fight_against(entitie, false)
         i += 1
 
 func draw_move_connection_indicators():

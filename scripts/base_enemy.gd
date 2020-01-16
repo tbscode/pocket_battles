@@ -115,4 +115,22 @@ func process_after_fight():
     if get_node("type").health <= 0:
         game_controller.get_current_level().remove_enemy(self)
 
+func load_own_character_in_battle(first):
+    # Changes the battle character sprite
+    if first:
+        game_controller.get_battle_menu().remove_entity1()
+    else:
+        game_controller.get_battle_menu().remove_entity2()
+
+
+func fight_against(entity, first):
+    # first is set if first character in battle
+    load_own_character_in_battle(first)
+    # Will performe only the attack of that entity
+    var enemy_type = entity.get_node("type")
+    enemy_type.health -= $type.attack
+    # The outer fight function, used to draw the default battle animations
+    # $type.fight_against(entity.get_node("type"))
+
+
 

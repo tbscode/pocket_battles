@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/pieces.png" type="Texture" id=1]
-[ext_resource path="res://scripts/player_entitie_scripts/knight.gd" type="Script" id=2]
+[ext_resource path="res://scripts/base_player_entitie.gd" type="Script" id=2]
 [ext_resource path="res://controller/player_entitie_click_handler.gd" type="Script" id=3]
 [ext_resource path="res://scripts/enemy_scripts/knight_type.gd" type="Script" id=4]
 

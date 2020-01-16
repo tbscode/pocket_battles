@@ -139,3 +139,9 @@ func set_selected_editor_tile(tile):
     selected_player_entity = null
     emit_signal("field_selected")
     selected_editor_tile = tile
+
+func get_battle_menu():
+    return get_tree().get_current_scene().get_node("battle_view")
+
+func show_battle_menu():
+    get_battle_menu().position.x = 0
