@@ -154,9 +154,6 @@ tracks/0/keys = {
 [node name="Node2D" type="Node2D"]
 
 [node name="knight" type="Sprite" parent="."]
-position = Vector2( -107.894, 279.254 )
-rotation = -0.586987
-scale = Vector2( 9.64, 9.64 )
 z_index = 2
 texture = ExtResource( 1 )
 offset = Vector2( 16, 16 )

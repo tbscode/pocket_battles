@@ -14,6 +14,7 @@ var entity_num
 var globals
 
 signal move_performed
+signal attack_finished
 
 
 func _ready():
@@ -147,7 +148,19 @@ func fight_against(entity, first):
     load_own_character_in_battle(first)
     # Will performe only the attack of that entity
     var enemy_type = entity.get_node("type")
+
+    if first:
+        $animations.play("attack_pos1")
+        yield($animations, "animation_finished")
+        $animations.play_backwards("attack_pos1")
+    else:
+        $animations.play("attack_pos2")
+        yield($animations, "animation_finished")
+        $animations.play_backwards("attack_pos2")
+    yield($animations, "animation_finished")
+
     enemy_type.health -= $type.attack
+    emit_signal("attack_finished")
     # The outer fight function, used to draw the default battle animations
     # $type.fight_against(entity.get_node("type"))
 

@@ -8,7 +8,11 @@ Godot game I'm building within the \#FFSjam on itch.io.
 
 It will be a tun based puzzle strategy game.
 
-### 16/01 Adding Animations
+### 16/01 adding animations and battle system infrastructure
+
+The entities can move now and fights are performed in order of entity placement. And all entities have individual animations now.
+
+<img src="blog/pocket_battles11.gif" width="49%">
 
 Before I change the graphics i can improved the look by adding some animations.
 

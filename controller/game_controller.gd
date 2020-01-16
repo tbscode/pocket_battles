@@ -152,3 +152,10 @@ func show_battle_menu():
     yield(animations, "animation_finished")
     emit_signal("animation_finished")
     #get_battle_menu().position.x = 0
+
+func hide_battle_menu():
+    var animations = get_battle_menu().get_node("animations") 
+    animations.play_backwards("battle_menu")
+    yield(animations, "animation_finished")
+    emit_signal("animation_finished")
+    #get_battle_menu().position.x = 0

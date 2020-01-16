@@ -249,9 +249,13 @@ func performe_move():
                 all_entities[j].take_battle_position(false)
                 yield(game_controller, "animation_finished")
                 entitie.fight_against(all_entities[j], true)
+                yield(entitie, "attack_finished")
                 all_entities[j].fight_against(entitie, false)
+                yield(all_entities[j], "attack_finished")
                 entitie.process_after_fight()
                 all_entities[j].process_after_fight()
+                game_controller.hide_battle_menu()
+                yield(game_controller, "animation_finished")
         i += 1
     emit_signal("performed_moves")
 
