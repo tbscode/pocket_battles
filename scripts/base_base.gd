@@ -1,14 +1,14 @@
-extends Script
+extends Sprite
 
 var placed = false
 
 var move_queue = []
 var move_pointer = 0
 
-var x = 0
-var y = 0
+var x : int = 0
+var y : int = 0
 
-var entitie_name
+var entity_name
 var entity_num
 
 var globals
@@ -16,6 +16,7 @@ var globals
 signal move_performed
 signal attack_finished
 
+var friendly = false
 
 func _ready():
     globals = game_controller.get_globals()
@@ -24,13 +25,21 @@ func place_on_field(field):
     var grid = game_controller.get_current_grid()
     position.x = grid.position.x + field[0] * game_controller.globals.block_width
     position.y = grid.position.y + field[1] * game_controller.globals.block_width
-    attatch_to_main_grid()
     placed = true
+    attatch_to_main_grid()
 
-func attatch_to_main_grid():
-    var tree = get_tree()
-    get_parent().remove_child(self)
-    tree.get_current_scene().get_node("player_entiti_collection").add_child(self)
+func attatch_to_main_grid(tree=get_tree()):
+    if placed:
+        get_parent().remove_child(self)
+    if friendly:
+        tree.get_current_scene().get_node("player_entiti_collection").add_child(self)
+    else:
+        tree.get_current_scene().get_node("enemy_container").add_child(self)
+
+func add_to_scene(tree):
+    attatch_to_main_grid(tree)
+    
+
 
 
 func change_move_queue(state_id, state):
@@ -106,11 +115,13 @@ func performe_move():
 func process_after_fight():
     if get_node("type").health <= 0:
         print("entity, dead")
-        game_controller.get_current_level().remove_player_entity(self)
+        if friendly:
+            game_controller.get_current_level().remove_player_entity(self)
+        else:
+            game_controller.get_current_level().remove_enemy(self)
 
 func load_own_character_in_battle(first):
     # Changes the battle character sprite
-    $animations.set_speed_scale(game_controller.get_globals().speed_scale)
     $animations.set_animation_start_pos(self.position)
     if first:
         game_controller.get_battle_menu().remove_entity1()

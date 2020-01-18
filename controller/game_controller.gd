@@ -39,6 +39,14 @@ func performe_move_on_current_level():
     get_current_level().performe_move()
     yield(get_current_level(), "performed_moves")
     get_current_level().update()
+    # Check if this was the last move:
+    if get_current_level().no_moves_left():
+        # Check if win or lose:
+        var result = get_current_level().has_player_won()
+        if result:
+            print("The player has defeated the level")
+        else:
+            print("player has lost")
 
 func get_current_grid():
     return get_tree().get_current_scene().get_node("grid")
@@ -148,6 +156,7 @@ func get_battle_menu():
 
 func show_battle_menu():
     var animations = get_battle_menu().get_node("animations") 
+    animations.set_speed_scale(globals.speed_scale)
     animations.play("battle_menu")
     yield(animations, "animation_finished")
     emit_signal("animation_finished")

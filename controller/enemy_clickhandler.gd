@@ -36,7 +36,8 @@ func pressed():
             entity_copy.y = field[1]
             print((field as String))
             game_controller.get_current_level().enemies.push_back(entity_copy)
-            entity_copy.place_on_field(field, get_tree().get_current_scene())
+            entity_copy.add_to_scene(get_tree())
+            entity_copy.place_on_field(field)
             # The ask the player to set the desired move chain
             game_controller.show_move_menu()
             # yield(game_controller, "moves_selected")
@@ -45,4 +46,4 @@ func pressed():
     else:
         if enemy_parent.placed:
             game_controller.select_position(enemy_parent.position)
-            game_controller.highlight_enemy_move(enemy_parent.enemy_num)
+            game_controller.highlight_enemy_move(enemy_parent.entity_num)

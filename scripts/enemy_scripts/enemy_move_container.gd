@@ -1,6 +1,6 @@
 extends Node2D
 
-var enemy_num : int
+var entity_num : int
 
 func select():
     get_node("margin/background").texture = game_controller.selected_enemy_move_background
