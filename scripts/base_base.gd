@@ -1,5 +1,5 @@
-extends Sprite
-# The default player entitie template
+extends Script
+
 var placed = false
 
 var move_queue = []
@@ -19,13 +19,6 @@ signal attack_finished
 
 func _ready():
     globals = game_controller.get_globals()
-
-func init(name):
-    entitie_name = self.name
-    move_queue.resize(game_controller.get_current_level().turn_amount)
-    for i in range(move_queue.size()):
-        move_queue[i] = 0
-
 
 func place_on_field(field):
     var grid = game_controller.get_current_grid()
@@ -80,7 +73,7 @@ func performe_move():
             if y > 0:
                 future_y -= 1
         2:# right
-            if x < game_controller.get_current_level().width: 
+            if x < game_controller.get_current_level().width:
                 future_x += 1
         3:# Down
             if y < game_controller.get_current_level().height:

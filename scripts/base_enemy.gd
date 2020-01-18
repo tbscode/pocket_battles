@@ -127,6 +127,8 @@ func process_after_fight():
 func load_own_character_in_battle(first):
     # TODO: Deprected
     # Changes the battle character sprite
+    $animations.set_speed_scale(game_controller.get_globals().speed_scale)
+    $animations.set_animation_start_pos(self.position)
     if first:
         game_controller.get_battle_menu().remove_entity1()
     else:

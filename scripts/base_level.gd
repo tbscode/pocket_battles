@@ -225,6 +225,15 @@ func performe_move():
         all_entities[i] = e
         i += 1
 
+    # Remove not placed entities:
+    var remove_marked = []
+    for j in range(all_entities.size()):
+        if not all_entities[j].placed:
+            remove_marked.push_front(j)
+
+    for e in remove_marked:
+        all_entities.remove(e)
+
     # Wait untill all animations finished
     i = 0
     for e in all_entities:

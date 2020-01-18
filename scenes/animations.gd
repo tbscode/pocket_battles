@@ -9,3 +9,4 @@ func set_animation_start_pos(pos):
     var idx2 = ani2.find_track(".:position")
     ani1.track_set_key_value(idx,0, pos)
     ani2.track_set_key_value(idx2,0, pos)
+    print("animation start pos adjusted")
