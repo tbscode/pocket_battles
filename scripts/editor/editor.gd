@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 # Handles all the main editor stuff
 var level
