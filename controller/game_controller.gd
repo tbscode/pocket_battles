@@ -17,8 +17,8 @@ signal field_selected
 signal moves_selected
 signal animation_finished # We wont play animation concurrently so one signal
 
-var selected_enemy_move_background = load("res://assets/ui/red_pressed.png")
-var un_selected_enemy_move_background = load("res://assets/ui/red.png")
+var selected_enemy_move_background = load("res://assets/ui/plain_select.png")
+var un_selected_enemy_move_background = load("res://assets/ui/plain.png")
 
 var selected_field = [0, 0]
 

@@ -1,29 +1,37 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/editor/editor.gd" type="Script" id=1]
 [ext_resource path="res://scripts/render/grid_editor.gd" type="Script" id=2]
-[ext_resource path="res://assets/ui/red.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/plain.png" type="Texture" id=3]
 [ext_resource path="res://assets/selection.png" type="Texture" id=4]
-[ext_resource path="res://assets/ui/plain.png" type="Texture" id=5]
-[ext_resource path="res://assets/ui/redup_styleboxtexture.tres" type="StyleBox" id=6]
-[ext_resource path="res://assets/ui/red_pressed.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/button_hover.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/button_down.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/button.png" type="Texture" id=7]
 [ext_resource path="res://controller/editor_click_play.gd" type="Script" id=8]
 
-[sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 7 )
-region_rect = Rect2( 0, 0, 48, 48 )
-margin_left = 3.0
-margin_right = 3.0
-margin_top = 3.0
-margin_bottom = 3.0
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 32, 32 )
+margin_left = 8.0
+margin_right = 8.0
+margin_top = 8.0
+margin_bottom = 16.0
 
-[sub_resource type="StyleBoxTexture" id=2]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 48, 48 )
-margin_left = 3.0
-margin_right = 3.0
-margin_top = 3.0
-margin_bottom = 5.0
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 32, 32 )
+margin_left = 8.0
+margin_right = 8.0
+margin_top = 8.0
+margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 32, 32 )
+margin_left = 8.0
+margin_right = 8.0
+margin_top = 8.0
+margin_bottom = 16.0
 
 [node name="editor" type="Control"]
 margin_right = 399.0
@@ -45,25 +53,21 @@ y = 0
 [node name="enemy_entitie_menu" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 532.0
+margin_top = 542.0
 margin_right = -80.0
 
 [node name="margin" type="MarginContainer" parent="enemy_entitie_menu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
 
 [node name="background" type="NinePatchRect" parent="enemy_entitie_menu/margin"]
-margin_right = 299.0
-margin_bottom = 48.0
+margin_right = 319.0
+margin_bottom = 58.0
 texture = ExtResource( 3 )
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 5
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="selector" type="Sprite" parent="."]
 position = Vector2( -32, 0 )
@@ -92,7 +96,7 @@ __meta__ = {
 [node name="background" type="NinePatchRect" parent="player_move_menu/menu_container/margin"]
 margin_right = 399.0
 margin_bottom = 100.0
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
@@ -106,10 +110,11 @@ margin_bottom = 100.0
 
 [node name="tile_menu" type="Control" parent="."]
 anchor_right = 1.0
-margin_left = -2.10529
-margin_top = 473.158
-margin_right = -0.305298
-margin_bottom = 543.158
+anchor_bottom = 1.0
+margin_left = 1.10803
+margin_top = 481.108
+margin_right = -0.891968
+margin_bottom = -57.892
 __meta__ = {
 "_edit_group_": true
 }
@@ -117,19 +122,15 @@ __meta__ = {
 [node name="margin" type="MarginContainer" parent="tile_menu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
 
 [node name="background" type="NinePatchRect" parent="tile_menu/margin"]
-margin_right = 380.0
-margin_bottom = 50.0
+margin_right = 397.0
+margin_bottom = 61.0
 texture = ExtResource( 3 )
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 5
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="tool_menu" type="Control" parent="."]
 anchor_right = 1.0
@@ -145,7 +146,7 @@ anchor_bottom = 1.0
 [node name="background" type="NinePatchRect" parent="tool_menu/margin"]
 margin_right = 399.0
 margin_bottom = 60.0
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
@@ -164,31 +165,26 @@ anchor_bottom = 1.0
 [node name="background" type="NinePatchRect" parent="enemy_move_display/margin"]
 margin_right = 171.0
 margin_bottom = 316.0
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="scroll" type="ScrollContainer" parent="enemy_move_display/margin"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = -9.15527e-05
+margin_right = 171.0
+margin_bottom = 316.0
 
 [node name="vbox" type="VBoxContainer" parent="enemy_move_display/margin/scroll"]
-anchor_right = 1.0
-anchor_bottom = 1.0
 
 [node name="play_button" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -80.0
-margin_top = 544.0
-margin_right = -10.0
-margin_bottom = -10.0
-custom_styles/hover = ExtResource( 6 )
+margin_left = -80.7802
+margin_top = 540.0
+custom_styles/hover = SubResource( 5 )
 custom_styles/pressed = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
-text = "Play"
+custom_styles/normal = SubResource( 4 )
+text = "PLAY"
 script = ExtResource( 8 )

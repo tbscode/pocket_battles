@@ -148,19 +148,23 @@ func add_player_move_menu():
 
 func add_enemy_moves_to_listing():
     # Adds all the enemy move desriptions to the listing
+    var base_move_display = get_tree().get_current_scene().get_node("enemy_move_display")
     var enemy_move_display = get_tree().get_current_scene().get_node("enemy_move_display/margin/scroll/vbox")
     var row_count = 0
     for enemy in enemies:
         var move_container = game_controller.get_reusable_ui_elements().get_node("enemy_move_container").duplicate()
         move_container.rect_position.y = row_count * move_container.get_node("margin").rect_size.y
+        move_container.rect_min_size.x = base_move_display.rect_size.x
         move_container.entity_num = row_count
         enemy_move_containers.push_front(move_container)
         var line_count = 0
         for move in enemy.move_queue:
             var move_disp = game_controller.get_reusable_ui_elements().get_node("enemy_direction_sprite").duplicate()
+            var offsets = ( move_container.rect_size.y / 2.0 ) - move_disp.region_rect.size.x / 2.0
             move_container.get_node("margin/scroll/hbox").add_child(move_disp)
             move_disp.g = game_controller.get_globals()
             move_disp.position.x = line_count * globals.block_width
+            move_disp.offset.y += offsets
             move_disp.set_state(move)
             move_disp.change_state_region()
             line_count += 1
