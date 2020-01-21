@@ -134,6 +134,9 @@ func add_player_move_menu():
     var move_button = game_controller.get_reusable_ui_elements().get_node("direction_button")
     print("got the button" + (move_button.rect_size.x as String))
     x_pos = 0
+    # Start x, so that all button will be centered:
+    x_pos = get_viewport().size.x / 2.0 - ( move_button.rect_size.x * turn_amount) / 2.0
+    print("posses " + ( x_pos as String))
     for i in range(turn_amount):
         var new_button = move_button.duplicate()
         new_button.rect_position.x = x_pos
@@ -149,7 +152,7 @@ func add_enemy_moves_to_listing():
     var row_count = 0
     for enemy in enemies:
         var move_container = game_controller.get_reusable_ui_elements().get_node("enemy_move_container").duplicate()
-        move_container.position.y = row_count * move_container.get_node("margin").rect_size.y
+        move_container.rect_position.y = row_count * move_container.get_node("margin").rect_size.y
         move_container.entity_num = row_count
         enemy_move_containers.push_front(move_container)
         var line_count = 0
@@ -297,7 +300,7 @@ func draw_move_connection_indicators():
     for e in enemies:
         var move_disp = enemy_move_display.get_children()[e.entity_num]
         draw_line(Vector2( e.position.x + offset, e.position.y + offset ), \
-			Vector2( container.position.x + move_disp.position.x , container.position.y + move_disp.position.y ), Color.green)
+			Vector2( container.rect_position.x + move_disp.rect_position.x , container.rect_position.y + move_disp.rect_position.y ), Color.green)
 
 func _draw():
     if not edit:

@@ -1,0 +1,1 @@
+32 by 32 pixels, with 2 by 2 spacing, and a 0 by 0 offset.

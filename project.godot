@@ -32,6 +32,7 @@ window/size/always_on_top=true
 window/size/test_width=500
 window/size/test_height=600
 window/handheld/orientation="portrait"
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [rendering]

@@ -6,5 +6,3 @@ func pressed():
         # Check if placed of not
         game_controller.edit_mode = "draw" # TODO: reset in other places
         game_controller.set_selected_editor_tile(get_parent())
-        print("selected wall tile")
-        pass

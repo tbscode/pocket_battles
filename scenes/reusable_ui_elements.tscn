@@ -5,9 +5,8 @@
 [ext_resource path="res://controller/hide_button.gd" type="Script" id=3]
 [ext_resource path="res://assets/arrows_x32.png" type="Texture" id=4]
 [ext_resource path="res://scripts/enemy_scripts/enemy_move_container.gd" type="Script" id=5]
-[ext_resource path="res://assets/ui/red.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/plain.png" type="Texture" id=6]
 [ext_resource path="res://controller/enemy_moves_sprite.gd" type="Script" id=7]
-
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -22,6 +21,8 @@ margin_bottom = 3.0
 [node name="ui_nodes" type="Node2D"]
 
 [node name="direction_button" type="Button" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
 margin_right = 64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
@@ -37,7 +38,7 @@ offset = Vector2( 16, 16 )
 region_enabled = true
 region_rect = Rect2( 128, 64, 32, 32 )
 
-[node name="enemy_move_container" type="Node2D" parent="."]
+[node name="enemy_move_container" type="Control" parent="."]
 script = ExtResource( 5 )
 
 [node name="margin" type="MarginContainer" parent="enemy_move_container"]
@@ -48,10 +49,10 @@ margin_bottom = 42.0
 margin_right = 203.0
 margin_bottom = 42.0
 texture = ExtResource( 6 )
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 5
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="scroll" type="ScrollContainer" parent="enemy_move_container/margin"]
 margin_right = 203.0

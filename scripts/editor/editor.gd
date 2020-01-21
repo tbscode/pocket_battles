@@ -7,6 +7,8 @@ var grid
 var globals = preload("res://globals.gd")
 # This is the level init script
 func _ready():
+    # Resize to screen dimenisons
+    self.rect_size = get_viewport().size
     level = game_controller.get_current_level()
     level.edit = true
     var game_scene = get_tree().get_current_scene()

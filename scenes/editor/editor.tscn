@@ -1,15 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/editor/editor.gd" type="Script" id=1]
 [ext_resource path="res://scripts/render/grid_editor.gd" type="Script" id=2]
 [ext_resource path="res://assets/ui/red.png" type="Texture" id=3]
 [ext_resource path="res://assets/selection.png" type="Texture" id=4]
-[ext_resource path="res://assets/arrows_x32.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/plain.png" type="Texture" id=5]
 [ext_resource path="res://assets/ui/redup_styleboxtexture.tres" type="StyleBox" id=6]
 [ext_resource path="res://assets/ui/red_pressed.png" type="Texture" id=7]
 [ext_resource path="res://controller/editor_click_play.gd" type="Script" id=8]
-
-[sub_resource type="StyleBoxEmpty" id=1]
 
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 7 )
@@ -28,14 +26,14 @@ margin_top = 3.0
 margin_bottom = 5.0
 
 [node name="editor" type="Control"]
-margin_right = 398.0
-margin_bottom = 594.0
+margin_right = 399.0
+margin_bottom = 600.0
 script = ExtResource( 1 )
 
 [node name="grid" type="Node2D" parent="." groups=[
 "grid",
 ]]
-position = Vector2( 9.02953, 66.5917 )
+position = Vector2( 6.92424, 76.0654 )
 script = ExtResource( 2 )
 x = 0
 y = 0
@@ -59,8 +57,8 @@ margin_right = -10.0
 margin_bottom = -10.0
 
 [node name="background" type="NinePatchRect" parent="enemy_entitie_menu/margin"]
-margin_right = 298.0
-margin_bottom = 42.0
+margin_right = 299.0
+margin_bottom = 48.0
 texture = ExtResource( 3 )
 patch_margin_left = 3
 patch_margin_top = 3
@@ -74,8 +72,10 @@ offset = Vector2( 16, 16 )
 
 [node name="player_move_menu" type="Control" parent="."]
 anchor_right = 1.0
-margin_top = 374.0
-margin_bottom = 481.0
+margin_left = -2.105
+margin_top = 380.0
+margin_right = -2.10501
+margin_bottom = 487.0
 
 [node name="menu_container" type="Control" parent="player_move_menu"]
 anchor_right = 1.0
@@ -84,34 +84,31 @@ margin_bottom = 100.0
 [node name="margin" type="MarginContainer" parent="player_move_menu/menu_container"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="background" type="NinePatchRect" parent="player_move_menu/menu_container/margin"]
-margin_right = 378.0
-margin_bottom = 80.0
-texture = ExtResource( 3 )
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 5
+margin_right = 399.0
+margin_bottom = 100.0
+texture = ExtResource( 5 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="scroll" type="ScrollContainer" parent="player_move_menu/menu_container/margin"]
-margin_right = 378.0
-margin_bottom = 80.0
+margin_right = 399.0
+margin_bottom = 100.0
 
 [node name="hbox" type="HBoxContainer" parent="player_move_menu/menu_container/margin/scroll"]
 
 [node name="tile_menu" type="Control" parent="."]
 anchor_right = 1.0
-margin_top = 470.0
-margin_right = 1.79999
-margin_bottom = 540.0
+margin_left = -2.10529
+margin_top = 473.158
+margin_right = -0.305298
+margin_bottom = 543.158
 __meta__ = {
 "_edit_group_": true
 }
@@ -125,7 +122,7 @@ margin_right = -10.0
 margin_bottom = -10.0
 
 [node name="background" type="NinePatchRect" parent="tile_menu/margin"]
-margin_right = 379.0
+margin_right = 380.0
 margin_bottom = 50.0
 texture = ExtResource( 3 )
 patch_margin_left = 3
@@ -135,66 +132,30 @@ patch_margin_bottom = 5
 
 [node name="tool_menu" type="Control" parent="."]
 anchor_right = 1.0
-margin_bottom = 60.0
+margin_left = -2.10529
+margin_top = 3.1579
+margin_right = -2.10529
+margin_bottom = 63.1579
 
 [node name="margin" type="MarginContainer" parent="tool_menu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
 
 [node name="background" type="NinePatchRect" parent="tool_menu/margin"]
-margin_right = 378.0
-margin_bottom = 40.0
-texture = ExtResource( 3 )
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 5
-
-[node name="edit" type="Sprite" parent="tool_menu/margin"]
+margin_right = 399.0
+margin_bottom = 60.0
 texture = ExtResource( 5 )
-offset = Vector2( 16, 16 )
-region_enabled = true
-region_rect = Rect2( 64, 64, 32, 32 )
-
-[node name="editclick" type="Button" parent="tool_menu/margin/edit"]
-margin_right = 32.0
-margin_bottom = 32.0
-custom_styles/normal = SubResource( 1 )
-
-[node name="delete" type="Sprite" parent="tool_menu/margin"]
-position = Vector2( 32, 0 )
-texture = ExtResource( 5 )
-offset = Vector2( 16, 16 )
-region_enabled = true
-region_rect = Rect2( 32, 32, 32, 32 )
-
-[node name="deleteclick" type="Button" parent="tool_menu/margin/delete"]
-margin_right = 32.0
-margin_bottom = 32.0
-custom_styles/normal = SubResource( 1 )
-
-[node name="build" type="Sprite" parent="tool_menu/margin"]
-position = Vector2( 64, 0 )
-texture = ExtResource( 5 )
-offset = Vector2( 16, 16 )
-region_enabled = true
-region_rect = Rect2( 96, 32, 32, 32 )
-
-[node name="buildclick" type="Button" parent="tool_menu/margin/build"]
-margin_right = 32.0
-margin_bottom = 32.0
-custom_styles/normal = SubResource( 1 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="enemy_move_display" type="Control" parent="."]
 anchor_right = 1.0
-margin_left = 230.0
-margin_top = 60.0
-margin_right = -2.0
-margin_bottom = 376.0
+margin_left = 227.895
+margin_top = 63.1579
+margin_right = -4.10529
+margin_bottom = 379.158
 __meta__ = {
 "_edit_group_": true
 }
@@ -202,23 +163,19 @@ __meta__ = {
 [node name="margin" type="MarginContainer" parent="enemy_move_display"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
 
 [node name="background" type="NinePatchRect" parent="enemy_move_display/margin"]
-margin_right = 146.0
-margin_bottom = 296.0
-texture = ExtResource( 3 )
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 5
+margin_right = 167.0
+margin_bottom = 316.0
+texture = ExtResource( 5 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="scroll" type="ScrollContainer" parent="enemy_move_display/margin"]
-margin_right = 146.0
-margin_bottom = 296.0
+margin_right = 167.0
+margin_bottom = 316.0
 
 [node name="vbox" type="VBoxContainer" parent="enemy_move_display/margin/scroll"]
 

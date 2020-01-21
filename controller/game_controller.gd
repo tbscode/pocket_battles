@@ -91,7 +91,7 @@ func show_move_menu():
     # Will simply move the move emnu in view
     print("showing the move menu")
     self.un_hide_all_move_buttons()
-    get_tree().get_current_scene().get_node("player_move_menu/menu_container").position.x = 0
+    get_tree().get_current_scene().get_node("player_move_menu/menu_container").rect_position.x = 0
     
 func reload_move_menu(node):
 	var move_buttons = self.get_move_button_container().get_children()
