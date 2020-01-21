@@ -8,6 +8,12 @@ Godot game I'm building within the \#FFSjam on itch.io.
 
 It will be a tun based puzzle strategy game.
 
+### 21/01 Adding new Graphics & found a  bug in godot?
+
+Godot Scroll boxes seem to change anchors as thy want
+
+<img src="blog/godot_problem1.gif" width="49%">
+
 ### 16/01 adding animations and battle system infrastructure
 
 The entities can move now and fights are performed in order of entity placement. And all entities have individual animations now.

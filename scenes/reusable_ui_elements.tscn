@@ -39,14 +39,16 @@ region_enabled = true
 region_rect = Rect2( 128, 64, 32, 32 )
 
 [node name="enemy_move_container" type="Control" parent="."]
+anchor_right = 1.0
+margin_bottom = 42.0
 script = ExtResource( 5 )
 
 [node name="margin" type="MarginContainer" parent="enemy_move_container"]
-margin_right = 203.0
-margin_bottom = 42.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="background" type="NinePatchRect" parent="enemy_move_container/margin"]
-margin_right = 203.0
+margin_right = 16.0
 margin_bottom = 42.0
 texture = ExtResource( 6 )
 patch_margin_left = 8
@@ -55,7 +57,7 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="scroll" type="ScrollContainer" parent="enemy_move_container/margin"]
-margin_right = 203.0
+margin_right = 16.0
 margin_bottom = 42.0
 
 [node name="hbox" type="HBoxContainer" parent="enemy_move_container/margin/scroll"]
