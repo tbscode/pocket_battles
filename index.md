@@ -1,5 +1,10 @@
 # Blog for Pocket Battles
 
+### Asset Sources and Mentions:
+
+- [Base ui](https://opengameart.org/content/pixel-uihud-pack)
+- [Base Tile Assets](https://opengameart.org/content/bomber-planet-16x16-pixel-art-assets)
+
 Godot game I'm building within the \#FFSjam on itch.io.
 
 > Graphics are placeholders
@@ -10,7 +15,11 @@ It will be a tun based puzzle strategy game.
 
 ### 21/01 Adding new Graphics & found a  bug in godot?
 
-Godot Scroll boxes seem to change anchors as thy want
+Here the new Look (see sources on top of page)
+
+<img src="blog/pocket_battles12.gif" width="49%">
+
+Godot Scroll boxes seem to change anchors as thy want. Worked around that by resizing the object by code rather than relying on godots anchoring system.
 
 <img src="blog/godot_problem1.gif" width="49%">
 
