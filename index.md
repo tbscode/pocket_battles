@@ -4,6 +4,7 @@
 
 - [Base ui](https://opengameart.org/content/pixel-uihud-pack)
 - [Base Tile Assets](https://opengameart.org/content/bomber-planet-16x16-pixel-art-assets)
+- [Pixel Webpons By SCay](https://opengameart.org/content/pixel-weapons-1)
 
 Godot game I'm building within the \#FFSjam on itch.io.
 
@@ -12,6 +13,12 @@ Godot game I'm building within the \#FFSjam on itch.io.
 ## The Game
 
 It will be a tun based puzzle strategy game.
+
+### 25/01 Desighned temporary logo, ui polishing
+
+Used some open source pixel art to desighn a fast logo, as the FFSjam Deadline is coming up.
+
+<img src="blog/pocket_battles13.gif" width="49%">
 
 ### 21/01 Adding new Graphics & found a  bug in godot?
 

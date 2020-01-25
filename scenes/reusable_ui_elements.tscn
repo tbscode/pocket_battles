@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/ui/redup_styleboxtexture.tres" type="StyleBox" id=1]
-[ext_resource path="res://assets/ui/red_pressed.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/plain_select.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/button_down.png" type="Texture" id=2]
 [ext_resource path="res://controller/hide_button.gd" type="Script" id=3]
 [ext_resource path="res://assets/arrows_x32.png" type="Texture" id=4]
 [ext_resource path="res://scripts/enemy_scripts/enemy_move_container.gd" type="Script" id=5]
@@ -9,39 +9,50 @@
 [ext_resource path="res://controller/enemy_moves_sprite.gd" type="Script" id=7]
 
 [sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 48, 48 )
-margin_left = 3.0
-margin_right = 3.0
-margin_top = 3.0
-margin_bottom = 3.0
+texture = ExtResource( 1 )
+margin_left = 8.0
+margin_right = 8.0
+margin_top = 8.0
+margin_bottom = 8.0
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 32, 32 )
+margin_left = 8.0
+margin_right = 8.0
+margin_top = 8.0
+margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="ui_nodes" type="Node2D"]
 
 [node name="direction_button" type="Button" parent="."]
-margin_right = 64.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
-custom_styles/hover = ExtResource( 1 )
-custom_styles/pressed = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+margin_right = 80.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 80, 80 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
 script = ExtResource( 3 )
 
 [node name="direction_texture_sprite" type="Sprite" parent="direction_button"]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
-offset = Vector2( 16, 16 )
+offset = Vector2( 20, 20 )
 region_enabled = true
 region_rect = Rect2( 128, 64, 32, 32 )
 
 [node name="enemy_move_container" type="Control" parent="."]
+margin_right = 200.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 200, 42 )
 size_flags_horizontal = 0
 size_flags_vertical = 3
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="margin" type="MarginContainer" parent="enemy_move_container"]
 anchor_right = 1.0
