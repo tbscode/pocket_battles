@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://mainscene.gd" type="Script" id=1]
 [ext_resource path="res://scripts/render/grid.gd" type="Script" id=2]
@@ -9,9 +9,10 @@
 [ext_resource path="res://assets/ui/plain.png" type="Texture" id=7]
 [ext_resource path="res://assets/selection.png" type="Texture" id=8]
 [ext_resource path="res://scripts/battle_view.gd" type="Script" id=9]
-[ext_resource path="res://assets/platform.png" type="Texture" id=10]
+[ext_resource path="res://assets/platform2.png" type="Texture" id=10]
+[ext_resource path="res://scripts/battle/health_bar.gd" type="Script" id=11]
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 32, 32 )
 margin_left = 8.0
@@ -19,7 +20,7 @@ margin_right = 8.0
 margin_top = 8.0
 margin_bottom = 16.0
 
-[sub_resource type="StyleBoxTexture" id=1]
+[sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 32, 32 )
 margin_left = 8.0
@@ -27,7 +28,7 @@ margin_right = 8.0
 margin_top = 8.0
 margin_bottom = 8.0
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 32, 32 )
 margin_left = 8.0
@@ -35,8 +36,7 @@ margin_right = 8.0
 margin_top = 8.0
 margin_bottom = 16.0
 
-[sub_resource type="Animation" id=3]
-resource_name = "battle_menu"
+[sub_resource type="Animation" id=4]
 step = 1.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("battle_view:position")
@@ -68,9 +68,9 @@ y = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 527.248
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 1 )
-custom_styles/normal = SubResource( 4 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
 text = "Move"
 script = ExtResource( 6 )
 
@@ -171,7 +171,7 @@ texture = ExtResource( 8 )
 offset = Vector2( 16, 16 )
 
 [node name="battle_view" type="Node2D" parent="."]
-position = Vector2( -500, 33.32 )
+position = Vector2( -500, 0 )
 z_index = 1
 script = ExtResource( 9 )
 
@@ -185,14 +185,21 @@ __meta__ = {
 position = Vector2( 233.826, 146.976 )
 
 [node name="platform1" type="Sprite" parent="battle_view"]
-position = Vector2( 286.042, 163.721 )
-scale = Vector2( 0.55, 0.4 )
+position = Vector2( 308.088, 175.621 )
+rotation = 0.358255
+scale = Vector2( 4.38762, 3.191 )
 texture = ExtResource( 10 )
 
 [node name="platform2" type="Sprite" parent="battle_view"]
-position = Vector2( 127.101, 409.78 )
+position = Vector2( 211.194, 355.833 )
+rotation = 0.473788
+scale = Vector2( 8.09956, 8.09956 )
 texture = ExtResource( 10 )
 
 [node name="animations" type="AnimationPlayer" parent="battle_view"]
 root_node = NodePath("../..")
-anims/battle_menu = SubResource( 3 )
+anims/battle_menu = SubResource( 4 )
+
+[node name="health_bar1" type="Node2D" parent="battle_view"]
+position = Vector2( 19.04, 253.867 )
+script = ExtResource( 11 )

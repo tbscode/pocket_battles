@@ -123,6 +123,7 @@ func process_after_fight():
 func load_own_character_in_battle(first):
     # Changes the battle character sprite
     $animations.set_animation_start_pos(self.position)
+    # TODO: removing the enteties not needed anymore
     if first:
         game_controller.get_battle_menu().remove_entity1()
     else:

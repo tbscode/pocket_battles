@@ -91,8 +91,17 @@ And base ui for player entity placement.
 
 ### TODO
 
-- [ ] build levels
-- [ ] implement main game mecanic
-- [ ] anchor ui element to support different resolutions
-- [x] Level loaded and saver using JSON 
-- [x] level init enemy spawing and player selection
+To produce a semi finished game till 31 folling has to be done:
+
+- [] Add new character sprites
+- [] Add facing direction filter (also for moves)
+- [] Add a actual victory screen
+- [] Make at least 10 levels
+- [] Add Level Select Menu
+- [] Add level save option
+- [] Add one special entity: Archer
+
+Smaller fixes:
+
+- Remove character button hover
+- Bug: Editor character moves sometimes maps to wrong entity

@@ -205,7 +205,7 @@ scale = Vector2( 0.55, 0.4 )
 texture = ExtResource( 7 )
 
 [node name="platform2" type="Sprite" parent="battle_view"]
-position = Vector2( 127.101, 409.78 )
+position = Vector2( 202.079, 355.25 )
 texture = ExtResource( 7 )
 
 [node name="animations" type="AnimationPlayer" parent="battle_view"]
