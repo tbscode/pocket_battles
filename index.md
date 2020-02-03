@@ -1,5 +1,9 @@
 # Blog for Pocket Battles
 
+<img src="blog/pocket_battles15.gif" width="49%">
+
+A hard memory puzzle, battle rpg strategy game ;) 
+
 ### Asset Sources and Mentions:
 
 - [Base ui](https://opengameart.org/content/pixel-uihud-pack)
@@ -8,11 +12,25 @@
 
 Godot game I'm building within the \#FFSjam on itch.io.
 
-> Graphics are placeholders
+> Some graphics are placeholders
 
-## The Game
+### Jam Reflection
 
-It will be a tun based puzzle strategy game.
+This was my first GoDot game and therefore also the first time I used GD Script. I have learned a lot about Godot Engine and can as I thought - develop games a lot faster - using a engine. GD Script was fast to lean since so pythonic, though offers some typing constructs, So that I missed Kotlin, which I used with Libgdx., not as much as I expected. And the workings of the Engine are quite comprehensible for Linux user since the atomic and tree node structure. Discomfort what was I seeked in my tooling so I'd learn a wider variety of code and design methods. I chose vim as editor, in combination with tmux terminal multiplexing. This went very well with the command-line compatibility of Godot. Code could be run executed and exported via terminal, that also handled the file management, visual editor was only used to edit scenes animations and specific exported node properties. For the game - since I wanted to learn more about dynamic ui in combination with editor supported animations, but also dynamic level  building - i chose a combination of puzzle strategy and character rpg. Which might not be that much of a playable game anyhow but made me learn what I wanted to learn.
+
+I wanted to learn godot for a longtime and using the Jam as a motivator worked quite well, so even though now apparently not submitted, I'm happy with the game and more so with what I learned.
+
+Next Jam I'll be using GoDot, till then play the one prototype level of the debug Android or Web Version:
+
+-- yo future me: place the link here --
+
+## The Development Process
+
+### 01/02 Working Game Prototype No polishing, And I did not  miss the deadline or did I?
+
+It said submissions open until 12:00 today and that the submissions are closed already which sort of makes no sense, but since I only used the Jam as a excuse to learn GoDot Engine that does not really matter.
+
+![image-20200203025107251](/home/tim/.config/Typora/typora-user-images/image-20200203025107251.png)
 
 ### 25/01 Desighned temporary logo, ui polishing
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/pieces.png" type="Texture" id=1]
 [ext_resource path="res://scripts/base_enemy.gd" type="Script" id=2]
@@ -6,9 +6,127 @@
 [ext_resource path="res://controller/enemy_clickhandler.gd" type="Script" id=4]
 [ext_resource path="res://scenes/animations.gd" type="Script" id=5]
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="StyleBoxEmpty" id=13]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=9]
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -34.907, 100 ), Vector2( 322.095, -66.6404 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 46.3724 ]
+}
+
+[sub_resource type="Animation" id=10]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 200, 60 ), Vector2( -107.894, 279.254 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4, 4 ), Vector2( 9.64, 9.64 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -33.6319 ]
+}
+
+[sub_resource type="Animation" id=11]
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -34.907, 100 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 10, 10 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 200, 60 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 4, 4 ) ]
+}
+
+[sub_resource type="Animation" id=14]
 resource_name = "attack_pos1"
 step = 1.0
 tracks/0/type = "value"
@@ -36,7 +154,7 @@ tracks/1/keys = {
 "values": [ 0.0, 46.3724 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=15]
 resource_name = "attack_pos2"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -75,7 +193,7 @@ tracks/2/keys = {
 "values": [ 0.0, -33.6319 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=16]
 step = 1.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -102,7 +220,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 10, 10 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=17]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
@@ -143,17 +261,18 @@ script = ExtResource( 3 )
 [node name="clickhandler" type="Button" parent="rook"]
 margin_right = 32.0
 margin_bottom = 32.0
-custom_styles/normal = SubResource( 9 )
+custom_styles/normal = SubResource( 13 )
 script = ExtResource( 4 )
 
 [node name="animations" type="AnimationPlayer" parent="rook"]
-anims/attack_pos1 = SubResource( 5 )
-anims/attack_pos2 = SubResource( 6 )
-anims/move_to_battle_view1 = SubResource( 7 )
-anims/move_to_battle_view2 = SubResource( 8 )
+anims/attack_pos1 = SubResource( 9 )
+anims/attack_pos2 = SubResource( 10 )
+anims/move_to_battle_view1 = SubResource( 11 )
+anims/move_to_battle_view2 = SubResource( 12 )
 script = ExtResource( 5 )
 
 [node name="queen" type="Sprite" parent="."]
+position = Vector2( -34.9068, 242.761 )
 texture = ExtResource( 1 )
 offset = Vector2( 16, 16 )
 region_enabled = true
@@ -166,12 +285,12 @@ script = ExtResource( 3 )
 [node name="clickhandler" type="Button" parent="queen"]
 margin_right = 32.0
 margin_bottom = 32.0
-custom_styles/normal = SubResource( 9 )
+custom_styles/normal = SubResource( 13 )
 script = ExtResource( 4 )
 
 [node name="animations" type="AnimationPlayer" parent="queen"]
-anims/attack_pos1 = SubResource( 5 )
-anims/attack_pos2 = SubResource( 6 )
-anims/move_to_battle_view1 = SubResource( 7 )
-anims/move_to_battle_view2 = SubResource( 8 )
+anims/attack_pos1 = SubResource( 14 )
+anims/attack_pos2 = SubResource( 15 )
+anims/move_to_battle_view1 = SubResource( 16 )
+anims/move_to_battle_view2 = SubResource( 17 )
 script = ExtResource( 5 )

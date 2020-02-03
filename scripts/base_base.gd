@@ -112,22 +112,17 @@ func performe_move():
                 print("no next tile")
 
 
-func process_after_fight():
+func process_after_fight(first):
     if get_node("type").health <= 0:
         print("entity, dead")
         if friendly:
             game_controller.get_current_level().remove_player_entity(self)
         else:
             game_controller.get_current_level().remove_enemy(self)
-
-func load_own_character_in_battle(first):
-    # Changes the battle character sprite
-    $animations.set_animation_start_pos(self.position)
-    # TODO: removing the enteties not needed anymore
-    if first:
-        game_controller.get_battle_menu().remove_entity1()
     else:
-        game_controller.get_battle_menu().remove_entity2()
+        # Move them back to their positions
+        go_back_to_board(first)
+
 
 func generate_movement_animation_and_play(future):
     # Based on the given direction this will return a animation for that
@@ -145,14 +140,22 @@ func generate_movement_animation_and_play(future):
     emit_signal("move_performed")
 
 func take_battle_position(first):
+    game_controller.reset_health_bar($type.health, $type.health_default, first)
+    $animations.set_animation_start_pos(self.position)
     if first:
         $animations.play("move_to_battle_view1")
     else:
         $animations.play("move_to_battle_view2")
 
+func go_back_to_board(first):
+    if first:
+        $animations.play_backwards("move_to_battle_view1")
+    else:
+        $animations.play_backwards("move_to_battle_view2")
+
+
 func fight_against(entity, first):
     # first is set if first character in battle
-    load_own_character_in_battle(first)
     # Will performe only the attack of that entity
     var enemy_type = entity.get_node("type")
 
@@ -167,6 +170,9 @@ func fight_against(entity, first):
     yield($animations, "animation_finished")
 
     enemy_type.health -= $type.attack
+    # Change health bar
+    game_controller.remove_from_health_bar($type.attack, not (first))
+    yield(get_tree().create_timer(1.0), "timeout")
     emit_signal("attack_finished")
     # The outer fight function, used to draw the default battle animations
     # $type.fight_against(entity.get_node("type"))

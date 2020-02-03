@@ -1,7 +1,7 @@
 extends Node
 
 const block_width = 32
-const speed_scale = 3
+const speed_scale = 2
 
 const up_region = [96, 64]
 const right_region = [32, 64]

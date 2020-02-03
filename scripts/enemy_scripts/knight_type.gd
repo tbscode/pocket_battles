@@ -4,8 +4,9 @@ extends Node
 
 var base_moves = [ 0, 1, 2, 3, 4] # Nothing, Up, Right, Down, Left
 
-var health = 1
-var attack = 1
+var health = 5
+var health_default = health
+var attack = 3
 
 func fight_against(entity):
     health -= entity.attack

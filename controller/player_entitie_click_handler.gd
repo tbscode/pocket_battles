@@ -35,3 +35,4 @@ func pressed():
         game_controller.reload_move_menu(self)
         game_controller.show_move_menu()
         game_controller.select_position(get_parent().position)
+        game_controller.highlight_player_move(get_parent().entity_num)

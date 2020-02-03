@@ -11,12 +11,15 @@ var enemies = [] # List of enemies
 var player_entities = [] # Holds the Players Tiles.
 var enemy_data # Hold all the enemies after init, before thy are added to the scene
 var enemy_move_containers = []
+var player_move_containers = []
 var player_entitie_data
 
 var globals = preload("res://globals.gd")
 
 var turn_amount # every level has a locked amount of turns
 var moves_performed : int = 0
+
+var first_move_made = false
 
 signal performed_moves
 
@@ -148,6 +151,7 @@ func add_player_move_menu():
 
 func add_enemy_moves_to_listing():
     # Adds all the enemy move desriptions to the listing
+    # TODO: Also Add a live bar here
     var base_move_display = get_tree().get_current_scene().get_node("enemy_move_display")
     var enemy_move_display = get_tree().get_current_scene().get_node("enemy_move_display/margin/scroll/vbox")
     var row_count = 0
@@ -171,12 +175,48 @@ func add_enemy_moves_to_listing():
         enemy_move_display.add_child(move_container)
         row_count += 1
 
+func add_player_moves_to_listing():
+    # Adds all the enemy move desriptions to the listing
+    var base_move_display = get_tree().get_current_scene().get_node("enemy_move_display")
+    var enemy_move_display = get_tree().get_current_scene().get_node("enemy_move_display/margin/scroll/vbox")
+    var row_count = enemies.size()
+    for enemy in player_entities:
+        var move_container = game_controller.get_reusable_ui_elements().get_node("enemy_move_container").duplicate()
+        move_container.rect_position.y = row_count * move_container.get_node("margin").rect_size.y
+        move_container.rect_min_size.x = base_move_display.rect_size.x
+        move_container.entity_num = row_count - enemies.size()
+        player_move_containers.push_front(move_container)
+        var line_count = 0
+        for move in enemy.move_queue:
+            var move_disp = game_controller.get_reusable_ui_elements().get_node("enemy_direction_sprite").duplicate()
+            var offsets = ( move_container.rect_size.y / 2.0 ) - move_disp.region_rect.size.x / 2.0
+            move_container.get_node("margin/scroll/hbox").add_child(move_disp)
+            move_disp.g = game_controller.get_globals()
+            move_disp.position.x = line_count * globals.block_width
+            move_disp.offset.y += offsets
+            move_disp.set_state(move)
+            move_disp.change_state_region()
+            line_count += 1
+        enemy_move_display.add_child(move_container)
+        row_count += 1
+
 func highlight_enemy_move(entity_num):
     for container in enemy_move_containers:
         if container.entity_num == entity_num:
             container.select()
         else:
             container.deselect()
+    for container in player_move_containers:
+        container.deselect()
+
+func highlight_player_move(entity_num):
+    for container in player_move_containers:
+        if container.entity_num == entity_num:
+            container.select()
+        else:
+            container.deselect()
+    for container in enemy_move_containers:
+        container.deselect()
 
 func reposition_player_entities_in_menu():
     var x_pos = 0
@@ -226,6 +266,7 @@ func parse_player_entitie_todict(entitie):
     return data
 
 func performe_move():
+    # TODO: Uselect player menu
     for enemie in enemies:
         enemie.performe_move()
 
@@ -285,8 +326,9 @@ func performe_move():
                 yield(entitie, "attack_finished")
                 all_entities[j].fight_against(entitie, false)
                 yield(all_entities[j], "attack_finished")
-                entitie.process_after_fight()
-                all_entities[j].process_after_fight()
+                entitie.process_after_fight(true)
+                all_entities[j].process_after_fight(false)
+                # Move players back to their position
                 game_controller.hide_battle_menu()
                 yield(game_controller, "animation_finished")
         i += 1
@@ -305,6 +347,13 @@ func draw_move_connection_indicators():
         var move_disp = enemy_move_display.get_children()[e.entity_num]
         draw_line(Vector2( e.position.x + offset, e.position.y + offset ), \
 			Vector2( container.rect_position.x + move_disp.rect_position.x , container.rect_position.y + move_disp.rect_position.y ), Color.green)
+    if first_move_made:
+        for e in player_entities:
+            if not e.placed:
+                continue
+            var move_disp = enemy_move_display.get_children()[enemies.size() + e.entity_num]
+            draw_line(Vector2( e.position.x + offset, e.position.y + offset ), \
+                Vector2( container.rect_position.x + move_disp.rect_position.x , container.rect_position.y + move_disp.rect_position.y ), Color.green)
 
 func _draw():
     if not edit:
@@ -316,6 +365,11 @@ func remove_player_entity(entity):
     get_tree().get_current_scene().get_node("player_entiti_collection").remove_child(entity)
     player_entities.remove(num)
     # TODO: remove that enemies move display
+    var enemy_move_display = get_tree().get_current_scene().get_node("enemy_move_display/margin/scroll/vbox")
+    for container in player_move_containers:
+        if container.entity_num == num:
+            enemy_move_display.remove_child(container)
+
     for i in range(num, player_entities.size()):
         player_entities[i].entity_num -= 1
     print(player_entities.size() as String)
@@ -334,6 +388,10 @@ func remove_enemy(entity):
     get_tree().get_current_scene().get_node("enemy_container").remove_child(entity)
     enemies.remove(num)
     # TODO: remove that enemies move display
+    var enemy_move_display = get_tree().get_current_scene().get_node("enemy_move_display/margin/scroll/vbox")
+    for container in enemy_move_containers:
+        if container.entity_num == num:
+            enemy_move_display.remove_child(container)
     for i in range(num, enemies.size()):
         enemies[i].entity_num -= 1
     print(enemies.size() as String)

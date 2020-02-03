@@ -16,6 +16,7 @@ var edit_mode = "select" # select, draw
 signal field_selected
 signal moves_selected
 signal animation_finished # We wont play animation concurrently so one signal
+signal health_ajusted
 
 var selected_enemy_move_background = load("res://assets/ui/plain_select.png")
 var un_selected_enemy_move_background = load("res://assets/ui/plain.png")
@@ -36,6 +37,10 @@ func get_enemy_entities():
 
 var wait_for_selection = false
 func performe_move_on_current_level():
+    if not get_current_level().first_move_made:
+        # Disable the move ment buttons when drawing them
+        get_current_level().add_player_moves_to_listing()
+        get_current_level().first_move_made = true
     get_current_level().performe_move()
     yield(get_current_level(), "performed_moves")
     get_current_level().update()
@@ -47,6 +52,21 @@ func performe_move_on_current_level():
             print("The player has defeated the level")
         else:
             print("player has lost")
+
+func reset_health_bar(value, health_default, first):
+    # Resets the level secenes player 1 health bar
+    if first:
+        get_tree().get_current_scene().get_node("battle_view/health_bar1").reconfigure_relative(value, health_default)
+    else:
+        get_tree().get_current_scene().get_node("battle_view/health_bar2").reconfigure_relative(value, health_default)
+
+
+func remove_from_health_bar(value, first):
+    if first:
+        get_tree().get_current_scene().get_node("battle_view/health_bar1").remove_health(value)
+    else:
+        get_tree().get_current_scene().get_node("battle_view/health_bar2").remove_health(value)
+
 
 func get_current_grid():
     return get_tree().get_current_scene().get_node("grid")
@@ -94,10 +114,12 @@ func show_move_menu():
     get_tree().get_current_scene().get_node("player_move_menu/menu_container").rect_position.x = 0
     
 func reload_move_menu(node):
-	var move_buttons = self.get_move_button_container().get_children()
-	for i in range(node.get_parent().move_queue.size()):
-		move_buttons[i].state = node.get_parent().move_queue[i]
-		move_buttons[i].change_state_region()
+    var move_buttons = self.get_move_button_container().get_children()
+    for i in range(node.get_parent().move_queue.size()):
+        move_buttons[i].state = node.get_parent().move_queue[i]
+        move_buttons[i].change_state_region()
+        if get_current_level().first_move_made:
+            move_buttons[i].disabled = true
 
 func hide_all_move_buttons():
 	get_move_button_container().set_visible(false)
@@ -125,6 +147,9 @@ func get_selected_player_entity():
 
 func highlight_enemy_move(enemy_num):
     get_current_level().highlight_enemy_move(enemy_num)
+
+func highlight_player_move(enemy_num):
+    get_current_level().highlight_player_move(enemy_num)
 
 func state_of_selected_entity_changed(state_id, state):
     # When one of the direction buttons was pressed

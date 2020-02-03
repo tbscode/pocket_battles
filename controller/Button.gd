@@ -7,7 +7,7 @@ func pressed():
     var level = load("res://scripts/base_level.gd").new()
     # level.init(10, 10)
     var file = File.new()
-    file.open("res://levels/level2.lvl", File.READ)
+    file.open("res://levels/level_dis.lvl", File.READ)
     text = file.get_as_text()
     level.init_from_string(text)
     game_controller.level_queue.push_back(level)

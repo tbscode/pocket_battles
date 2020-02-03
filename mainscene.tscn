@@ -171,27 +171,27 @@ texture = ExtResource( 8 )
 offset = Vector2( 16, 16 )
 
 [node name="battle_view" type="Node2D" parent="."]
-position = Vector2( -500, 0 )
+position = Vector2( -426.612, 0 )
 z_index = 1
 script = ExtResource( 9 )
 
 [node name="entity1" type="Node2D" parent="battle_view"]
-position = Vector2( 36.7441, 293.952 )
+position = Vector2( 41.061, 298.269 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="entity2" type="Node2D" parent="battle_view"]
-position = Vector2( 233.826, 146.976 )
+position = Vector2( 197.132, 142.659 )
 
 [node name="platform1" type="Sprite" parent="battle_view"]
-position = Vector2( 308.088, 175.621 )
+position = Vector2( 264.919, 171.304 )
 rotation = 0.358255
 scale = Vector2( 4.38762, 3.191 )
 texture = ExtResource( 10 )
 
 [node name="platform2" type="Sprite" parent="battle_view"]
-position = Vector2( 211.194, 355.833 )
+position = Vector2( 144.282, 360.15 )
 rotation = 0.473788
 scale = Vector2( 8.09956, 8.09956 )
 texture = ExtResource( 10 )
@@ -202,4 +202,8 @@ anims/battle_menu = SubResource( 4 )
 
 [node name="health_bar1" type="Node2D" parent="battle_view"]
 position = Vector2( 19.04, 253.867 )
+script = ExtResource( 11 )
+
+[node name="health_bar2" type="Node2D" parent="battle_view"]
+position = Vector2( 24.7432, 10.7923 )
 script = ExtResource( 11 )

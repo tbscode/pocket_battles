@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/ui/plain_select.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/button_down.png" type="Texture" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://scripts/enemy_scripts/enemy_move_container.gd" type="Script" id=5]
 [ext_resource path="res://assets/ui/plain.png" type="Texture" id=6]
 [ext_resource path="res://controller/enemy_moves_sprite.gd" type="Script" id=7]
-[ext_resource path="res://assets/bar-green.png" type="Texture" id=8]
+[ext_resource path="res://scripts/battle/bar_tab.gd" type="Script" id=8]
+[ext_resource path="res://assets/bar-green.png" type="Texture" id=9]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 1 )
@@ -25,7 +26,10 @@ margin_right = 8.0
 margin_top = 8.0
 margin_bottom = 8.0
 
-[sub_resource type="StyleBoxEmpty" id=3]
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.937255, 0.533333, 0.533333, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=4]
 
 [node name="ui_nodes" type="Node2D"]
 
@@ -35,7 +39,8 @@ margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
-custom_styles/normal = SubResource( 3 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
 script = ExtResource( 3 )
 
 [node name="direction_texture_sprite" type="Sprite" parent="direction_button"]
@@ -85,6 +90,7 @@ script = ExtResource( 7 )
 [node name="bar_tab" type="MarginContainer" parent="."]
 margin_right = 140.0
 margin_bottom = 20.0
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -92,7 +98,7 @@ __meta__ = {
 [node name="background" type="NinePatchRect" parent="bar_tab"]
 margin_right = 140.0
 margin_bottom = 20.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4
